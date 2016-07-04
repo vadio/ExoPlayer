@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.mp4;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.SeekMap;
 import com.google.android.exoplayer.testutil.FakeExtractorOutput;
 import com.google.android.exoplayer.testutil.FakeTrackOutput;
@@ -125,8 +125,8 @@ public final class Mp4ExtractorTest extends TestCase {
 
     // The video and audio formats are set correctly.
     assertEquals(2, extractorOutput.trackOutputs.size());
-    MediaFormat videoFormat = extractorOutput.trackOutputs.get(0).format;
-    MediaFormat audioFormat = extractorOutput.trackOutputs.get(1).format;
+    MediaFormat_vadio videoFormat = extractorOutput.trackOutputs.get(0).format;
+    MediaFormat_vadio audioFormat = extractorOutput.trackOutputs.get(1).format;
     assertEquals(MimeTypes.VIDEO_H264, videoFormat.mimeType);
     assertEquals(VIDEO_WIDTH, videoFormat.width);
     assertEquals(VIDEO_HEIGHT, videoFormat.height);
@@ -170,8 +170,8 @@ public final class Mp4ExtractorTest extends TestCase {
 
     // The video and audio formats are set correctly.
     assertEquals(2, extractorOutput.trackOutputs.size());
-    MediaFormat videoFormat = extractorOutput.trackOutputs.get(0).format;
-    MediaFormat audioFormat = extractorOutput.trackOutputs.get(1).format;
+    MediaFormat_vadio videoFormat = extractorOutput.trackOutputs.get(0).format;
+    MediaFormat_vadio audioFormat = extractorOutput.trackOutputs.get(1).format;
     assertEquals(MimeTypes.VIDEO_MP4V, videoFormat.mimeType);
     assertEquals(VIDEO_MP4V_WIDTH, videoFormat.width);
     assertEquals(VIDEO_MP4V_HEIGHT, videoFormat.height);

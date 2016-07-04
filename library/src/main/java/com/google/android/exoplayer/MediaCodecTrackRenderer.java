@@ -102,7 +102,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
      */
     public final String diagnosticInfo;
 
-    public DecoderInitializationException(MediaFormat mediaFormat, Throwable cause,
+    public DecoderInitializationException(MediaFormat_vadio mediaFormat, Throwable cause,
         boolean secureDecoderRequired, int errorCode) {
       super("Decoder init failed: [" + errorCode + "], " + mediaFormat, cause);
       this.mimeType = mediaFormat.mimeType;
@@ -111,7 +111,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
       this.diagnosticInfo = buildCustomDiagnosticInfo(errorCode);
     }
 
-    public DecoderInitializationException(MediaFormat mediaFormat, Throwable cause,
+    public DecoderInitializationException(MediaFormat_vadio mediaFormat, Throwable cause,
         boolean secureDecoderRequired, String decoderName) {
       super("Decoder init failed: " + decoderName + ", " + mediaFormat, cause);
       this.mimeType = mediaFormat.mimeType;
@@ -206,7 +206,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
   private final boolean deviceNeedsAutoFrcWorkaround;
   protected final Handler eventHandler;
 
-  private MediaFormat format;
+  private MediaFormat_vadio format;
   private DrmInitData drmInitData;
   private MediaCodec codec;
   private boolean codecIsAdaptive;
@@ -289,7 +289,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
   }
 
   @Override
-  protected final boolean handlesTrack(MediaFormat mediaFormat) throws DecoderQueryException {
+  protected final boolean handlesTrack(MediaFormat_vadio mediaFormat) throws DecoderQueryException {
     return handlesTrack(mediaCodecSelector, mediaFormat);
   }
 
@@ -302,7 +302,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
    * @throws DecoderQueryException Thrown if there was an error querying decoders.
    */
   protected abstract boolean handlesTrack(MediaCodecSelector mediaCodecSelector,
-      MediaFormat mediaFormat) throws DecoderQueryException;
+      MediaFormat_vadio mediaFormat) throws DecoderQueryException;
 
   /**
    * Returns a {@link DecoderInfo} for a given format.
@@ -722,7 +722,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
     return cryptoInfo;
   }
 
-  private android.media.MediaFormat getFrameworkMediaFormat(MediaFormat format) {
+  private android.media.MediaFormat getFrameworkMediaFormat(MediaFormat_vadio format) {
     android.media.MediaFormat mediaFormat = format.getFrameworkMediaFormatV16();
     if (deviceNeedsAutoFrcWorkaround) {
       mediaFormat.setInteger("auto-frc", 0);
@@ -752,7 +752,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
    * @throws ExoPlaybackException If an error occurs reinitializing the {@link MediaCodec}.
    */
   protected void onInputFormatChanged(MediaFormatHolder formatHolder) throws ExoPlaybackException {
-    MediaFormat oldFormat = format;
+    MediaFormat_vadio oldFormat = format;
     format = formatHolder.format;
     drmInitData = formatHolder.drmInitData;
     if (codec != null && canReconfigureCodec(codec, codecIsAdaptive, oldFormat, format)) {
@@ -837,7 +837,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
    * @return True if the existing instance can be reconfigured. False otherwise.
    */
   protected boolean canReconfigureCodec(MediaCodec codec, boolean codecIsAdaptive,
-      MediaFormat oldFormat, MediaFormat newFormat) {
+      MediaFormat_vadio oldFormat, MediaFormat_vadio newFormat) {
     return false;
   }
 
@@ -1038,7 +1038,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
    * @param format The format used to configure the decoder.
    * @return True if the decoder is known to fail if NAL units are queued before CSD.
    */
-  private static boolean codecNeedsDiscardToSpsWorkaround(String name, MediaFormat format) {
+  private static boolean codecNeedsDiscardToSpsWorkaround(String name, MediaFormat_vadio format) {
     return Util.SDK_INT < 21 && format.initializationData.isEmpty()
         && "OMX.MTK.VIDEO.DECODER.AVC".equals(name);
   }
@@ -1088,7 +1088,7 @@ public abstract class MediaCodecTrackRenderer extends SampleSourceTrackRenderer 
    *     to 2 for the given input format, whilst only actually outputting a single channel. False
    *     otherwise.
    */
-  private static boolean codecNeedsMonoChannelCountWorkaround(String name, MediaFormat format) {
+  private static boolean codecNeedsMonoChannelCountWorkaround(String name, MediaFormat_vadio format) {
     return Util.SDK_INT <= 18 && format.channelCount == 1
         && "OMX.MTK.AUDIO.DECODER.MP3".equals(name);
   }

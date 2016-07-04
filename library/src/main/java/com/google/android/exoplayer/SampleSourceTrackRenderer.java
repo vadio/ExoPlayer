@@ -70,7 +70,7 @@ public abstract class SampleSourceTrackRenderer extends TrackRenderer {
       SampleSourceReader source = sources[sourceIndex];
       int sourceTrackCount = source.getTrackCount();
       for (int trackIndex = 0; trackIndex < sourceTrackCount; trackIndex++) {
-        MediaFormat format = source.getFormat(trackIndex);
+        MediaFormat_vadio format = source.getFormat(trackIndex);
         boolean handlesTrack;
         try {
           handlesTrack = handlesTrack(format);
@@ -171,7 +171,7 @@ public abstract class SampleSourceTrackRenderer extends TrackRenderer {
   }
 
   @Override
-  protected final MediaFormat getFormat(int track) {
+  protected final MediaFormat_vadio getFormat(int track) {
     SampleSourceReader source = sources[handledSourceIndices[track]];
     return source.getFormat(handledSourceTrackIndices[track]);
   }
@@ -218,7 +218,7 @@ public abstract class SampleSourceTrackRenderer extends TrackRenderer {
    * @return True if the renderer can handle the track, false otherwise.
    * @throws DecoderQueryException Thrown if there was an error querying decoders.
    */
-  protected abstract boolean handlesTrack(MediaFormat mediaFormat) throws DecoderQueryException;
+  protected abstract boolean handlesTrack(MediaFormat_vadio mediaFormat) throws DecoderQueryException;
 
   /**
    * Invoked when a discontinuity is encountered. Also invoked when the renderer is enabled, for

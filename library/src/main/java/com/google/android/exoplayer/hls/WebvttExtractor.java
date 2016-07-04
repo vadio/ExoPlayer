@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.hls;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.extractor.Extractor;
 import com.google.android.exoplayer.extractor.ExtractorInput;
@@ -164,7 +164,7 @@ import java.util.regex.Pattern;
 
   private TrackOutput buildTrackOutput(long subsampleOffsetUs) {
     TrackOutput trackOutput = output.track(0);
-    trackOutput.format(MediaFormat.createTextFormat("id", MimeTypes.TEXT_VTT, MediaFormat.NO_VALUE,
+    trackOutput.format(MediaFormat_vadio.createTextFormat("id", MimeTypes.TEXT_VTT, MediaFormat_vadio.NO_VALUE,
         C.UNKNOWN_TIME_US, "en", subsampleOffsetUs));
     output.endTracks();
     return trackOutput;

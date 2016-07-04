@@ -75,7 +75,7 @@ public final class FrameworkSampleSource implements SampleSource, SampleSourceRe
 
   private IOException preparationError;
   private MediaExtractor extractor;
-  private MediaFormat[] trackFormats;
+  private MediaFormat_vadio[] trackFormats;
   private boolean prepared;
   private int remainingReleaseCount;
   private int[] trackStates;
@@ -147,7 +147,7 @@ public final class FrameworkSampleSource implements SampleSource, SampleSourceRe
 
       trackStates = new int[extractor.getTrackCount()];
       pendingDiscontinuities = new boolean[trackStates.length];
-      trackFormats = new MediaFormat[trackStates.length];
+      trackFormats = new MediaFormat_vadio[trackStates.length];
       for (int i = 0; i < trackStates.length; i++) {
         trackFormats[i] = createMediaFormat(extractor.getTrackFormat(i));
       }
@@ -163,7 +163,7 @@ public final class FrameworkSampleSource implements SampleSource, SampleSourceRe
   }
 
   @Override
-  public MediaFormat getFormat(int track) {
+  public MediaFormat_vadio getFormat(int track) {
     Assertions.checkState(prepared);
     return trackFormats[track];
   }
@@ -305,7 +305,7 @@ public final class FrameworkSampleSource implements SampleSource, SampleSourceRe
   }
 
   @SuppressLint("InlinedApi")
-  private static MediaFormat createMediaFormat(android.media.MediaFormat format) {
+  private static MediaFormat_vadio createMediaFormat(android.media.MediaFormat format) {
     String mimeType = format.getString(android.media.MediaFormat.KEY_MIME);
     String language = getOptionalStringV16(format, android.media.MediaFormat.KEY_LANGUAGE);
     int maxInputSize = getOptionalIntegerV16(format, android.media.MediaFormat.KEY_MAX_INPUT_SIZE);
@@ -327,11 +327,11 @@ public final class FrameworkSampleSource implements SampleSource, SampleSourceRe
     long durationUs = format.containsKey(android.media.MediaFormat.KEY_DURATION)
         ? format.getLong(android.media.MediaFormat.KEY_DURATION) : C.UNKNOWN_TIME_US;
     int pcmEncoding = MimeTypes.AUDIO_RAW.equals(mimeType) ? C.ENCODING_PCM_16BIT
-        : MediaFormat.NO_VALUE;
-    MediaFormat mediaFormat = new MediaFormat(null, mimeType, MediaFormat.NO_VALUE, maxInputSize,
-        durationUs, width, height, rotationDegrees, MediaFormat.NO_VALUE, channelCount, sampleRate,
-        language, MediaFormat.OFFSET_SAMPLE_RELATIVE, initializationData, false,
-        MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, pcmEncoding, encoderDelay, encoderPadding);
+        : MediaFormat_vadio.NO_VALUE;
+    MediaFormat_vadio mediaFormat = new MediaFormat_vadio(null, mimeType, MediaFormat_vadio.NO_VALUE, maxInputSize,
+        durationUs, width, height, rotationDegrees, MediaFormat_vadio.NO_VALUE, channelCount, sampleRate,
+        language, MediaFormat_vadio.OFFSET_SAMPLE_RELATIVE, initializationData, false,
+        MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, pcmEncoding, encoderDelay, encoderPadding);
     mediaFormat.setFrameworkFormatV16(format);
     return mediaFormat;
   }
@@ -343,7 +343,7 @@ public final class FrameworkSampleSource implements SampleSource, SampleSourceRe
 
   @TargetApi(16)
   private static final int getOptionalIntegerV16(android.media.MediaFormat format, String key) {
-    return format.containsKey(key) ? format.getInteger(key) : MediaFormat.NO_VALUE;
+    return format.containsKey(key) ? format.getInteger(key) : MediaFormat_vadio.NO_VALUE;
   }
 
 }

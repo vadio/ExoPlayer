@@ -17,7 +17,7 @@ package com.google.android.exoplayer.hls;
 
 import com.google.android.exoplayer.BehindLiveWindowException;
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.chunk.Chunk;
 import com.google.android.exoplayer.chunk.ChunkOperationHolder;
 import com.google.android.exoplayer.chunk.DataChunk;
@@ -531,11 +531,11 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
       // case below.
       Extractor extractor = new AdtsExtractor(startTimeUs);
       extractorWrapper = new HlsExtractorWrapper(trigger, format, startTimeUs, extractor,
-          switchingVariantSpliced, MediaFormat.NO_VALUE, MediaFormat.NO_VALUE);
+          switchingVariantSpliced, MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE);
     } else if (lastPathSegment.endsWith(MP3_FILE_EXTENSION)) {
       Extractor extractor = new Mp3Extractor(startTimeUs);
       extractorWrapper = new HlsExtractorWrapper(trigger, format, startTimeUs, extractor,
-          switchingVariantSpliced, MediaFormat.NO_VALUE, MediaFormat.NO_VALUE);
+          switchingVariantSpliced, MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE);
     } else if (lastPathSegment.endsWith(WEBVTT_FILE_EXTENSION)
         || lastPathSegment.endsWith(VTT_FILE_EXTENSION)) {
       PtsTimestampAdjuster timestampAdjuster = timestampAdjusterProvider.getAdjuster(isMaster,
@@ -548,7 +548,7 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
       }
       Extractor extractor = new WebvttExtractor(timestampAdjuster);
       extractorWrapper = new HlsExtractorWrapper(trigger, format, startTimeUs, extractor,
-          switchingVariantSpliced, MediaFormat.NO_VALUE, MediaFormat.NO_VALUE);
+          switchingVariantSpliced, MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE);
     } else if (previousTsChunk == null
         || previousTsChunk.discontinuitySequenceNumber != segment.discontinuitySequenceNumber
         || !format.equals(previousTsChunk.format)) {
@@ -876,8 +876,8 @@ public class HlsChunkSource implements HlsTrackSelector.Output {
     public ExposedTrack(Variant fixedVariant) {
       this.variants = new Variant[] {fixedVariant};
       this.defaultVariantIndex = 0;
-      this.adaptiveMaxWidth = MediaFormat.NO_VALUE;
-      this.adaptiveMaxHeight = MediaFormat.NO_VALUE;
+      this.adaptiveMaxWidth = MediaFormat_vadio.NO_VALUE;
+      this.adaptiveMaxHeight = MediaFormat_vadio.NO_VALUE;
     }
 
     public ExposedTrack(Variant[] adaptiveVariants, int defaultVariantIndex, int maxWidth,

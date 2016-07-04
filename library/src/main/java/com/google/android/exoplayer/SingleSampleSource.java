@@ -66,7 +66,7 @@ public final class SingleSampleSource implements SampleSource, SampleSourceReade
 
   private final Uri uri;
   private final DataSource dataSource;
-  private final MediaFormat format;
+  private final MediaFormat_vadio format;
   private final int minLoadableRetryCount;
   private final Handler eventHandler;
   private final EventListener eventListener;
@@ -83,16 +83,16 @@ public final class SingleSampleSource implements SampleSource, SampleSourceReade
   private int currentLoadableExceptionCount;
   private long currentLoadableExceptionTimestamp;
 
-  public SingleSampleSource(Uri uri, DataSource dataSource, MediaFormat format) {
+  public SingleSampleSource(Uri uri, DataSource dataSource, MediaFormat_vadio format) {
     this(uri, dataSource, format, DEFAULT_MIN_LOADABLE_RETRY_COUNT);
   }
 
-  public SingleSampleSource(Uri uri, DataSource dataSource, MediaFormat format,
+  public SingleSampleSource(Uri uri, DataSource dataSource, MediaFormat_vadio format,
       int minLoadableRetryCount) {
     this(uri, dataSource, format, minLoadableRetryCount, null, null, 0);
   }
 
-  public SingleSampleSource(Uri uri, DataSource dataSource, MediaFormat format,
+  public SingleSampleSource(Uri uri, DataSource dataSource, MediaFormat_vadio format,
       int minLoadableRetryCount, Handler eventHandler, EventListener eventListener,
       int eventSourceId) {
     this.uri = uri;
@@ -124,7 +124,7 @@ public final class SingleSampleSource implements SampleSource, SampleSourceReade
   }
 
   @Override
-  public MediaFormat getFormat(int track) {
+  public MediaFormat_vadio getFormat(int track) {
     return format;
   }
 

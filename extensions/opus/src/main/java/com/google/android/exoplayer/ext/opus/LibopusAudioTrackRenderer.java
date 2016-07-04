@@ -20,7 +20,7 @@ import com.google.android.exoplayer.CodecCounters;
 import com.google.android.exoplayer.ExoPlaybackException;
 import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.MediaClock;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleSource;
 import com.google.android.exoplayer.SampleSourceTrackRenderer;
@@ -85,7 +85,7 @@ public final class LibopusAudioTrackRenderer extends SampleSourceTrackRenderer
   private final AudioTrack audioTrack;
   private final MediaFormatHolder formatHolder;
 
-  private MediaFormat format;
+  private MediaFormat_vadio format;
   private OpusDecoder decoder;
   private InputBuffer inputBuffer;
   private OpusOutputBuffer outputBuffer;
@@ -141,7 +141,7 @@ public final class LibopusAudioTrackRenderer extends SampleSourceTrackRenderer
   }
 
   @Override
-  protected boolean handlesTrack(MediaFormat mediaFormat) {
+  protected boolean handlesTrack(MediaFormat_vadio mediaFormat) {
     return MimeTypes.AUDIO_OPUS.equalsIgnoreCase(mediaFormat.mimeType);
   }
 

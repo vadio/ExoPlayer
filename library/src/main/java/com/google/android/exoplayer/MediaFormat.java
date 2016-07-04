@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Defines the format of an elementary media stream.
  */
-public final class MediaFormat implements Parcelable {
+public final class MediaFormat_vadio implements Parcelable {
 
   public static final int NO_VALUE = -1;
 
@@ -156,68 +156,68 @@ public final class MediaFormat implements Parcelable {
   private int hashCode;
   private android.media.MediaFormat frameworkMediaFormat;
 
-  public static MediaFormat createVideoFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createVideoFormat(String trackId, String mimeType, int bitrate,
       int maxInputSize, long durationUs, int width, int height, List<byte[]> initializationData) {
     return createVideoFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         initializationData, NO_VALUE, NO_VALUE);
   }
 
-  public static MediaFormat createVideoFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createVideoFormat(String trackId, String mimeType, int bitrate,
       int maxInputSize, long durationUs, int width, int height, List<byte[]> initializationData,
       int rotationDegrees, float pixelWidthHeightRatio) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, NO_VALUE, NO_VALUE, null, OFFSET_SAMPLE_RELATIVE,
         initializationData, false, NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE);
   }
 
-  public static MediaFormat createAudioFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createAudioFormat(String trackId, String mimeType, int bitrate,
       int maxInputSize, long durationUs, int channelCount, int sampleRate,
       List<byte[]> initializationData, String language) {
     return createAudioFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, channelCount,
         sampleRate, initializationData, language, NO_VALUE);
   }
 
-  public static MediaFormat createAudioFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createAudioFormat(String trackId, String mimeType, int bitrate,
       int maxInputSize, long durationUs, int channelCount, int sampleRate,
       List<byte[]> initializationData, String language, int pcmEncoding) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, NO_VALUE, NO_VALUE,
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, NO_VALUE, NO_VALUE,
         NO_VALUE, NO_VALUE, channelCount, sampleRate, language, OFFSET_SAMPLE_RELATIVE,
         initializationData, false, NO_VALUE, NO_VALUE, pcmEncoding, NO_VALUE, NO_VALUE);
   }
 
-  public static MediaFormat createTextFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createTextFormat(String trackId, String mimeType, int bitrate,
       long durationUs, String language) {
     return createTextFormat(trackId, mimeType, bitrate, durationUs, language,
         OFFSET_SAMPLE_RELATIVE);
   }
 
-  public static MediaFormat createTextFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createTextFormat(String trackId, String mimeType, int bitrate,
       long durationUs, String language, long subsampleOffsetUs) {
-    return new MediaFormat(trackId, mimeType, bitrate, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
         NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE, language, subsampleOffsetUs, null, false, NO_VALUE,
         NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE);
   }
 
-  public static MediaFormat createImageFormat(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createImageFormat(String trackId, String mimeType, int bitrate,
       long durationUs, List<byte[]> initializationData, String language) {
-    return new MediaFormat(trackId, mimeType, bitrate, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
         NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE, language, OFFSET_SAMPLE_RELATIVE,
         initializationData, false, NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE);
   }
 
-  public static MediaFormat createFormatForMimeType(String trackId, String mimeType, int bitrate,
+  public static MediaFormat_vadio createFormatForMimeType(String trackId, String mimeType, int bitrate,
       long durationUs) {
-    return new MediaFormat(trackId, mimeType, bitrate, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
         NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE, null, OFFSET_SAMPLE_RELATIVE, null, false, NO_VALUE,
         NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE);
   }
 
-  public static MediaFormat createId3Format() {
-    return createFormatForMimeType(null, MimeTypes.APPLICATION_ID3, MediaFormat.NO_VALUE,
+  public static MediaFormat_vadio createId3Format() {
+    return createFormatForMimeType(null, MimeTypes.APPLICATION_ID3, MediaFormat_vadio.NO_VALUE,
         C.UNKNOWN_TIME_US);
   }
 
-  /* package */ MediaFormat(Parcel in) {
+  /* package */ MediaFormat_vadio(Parcel in) {
     trackId = in.readString();
     mimeType = in.readString();
     bitrate = in.readInt();
@@ -241,7 +241,7 @@ public final class MediaFormat implements Parcelable {
     encoderPadding = in.readInt();
   }
 
-  /* package */ MediaFormat(String trackId, String mimeType, int bitrate, int maxInputSize,
+  /* package */ MediaFormat_vadio(String trackId, String mimeType, int bitrate, int maxInputSize,
       long durationUs, int width, int height, int rotationDegrees, float pixelWidthHeightRatio,
       int channelCount, int sampleRate, String language, long subsampleOffsetUs,
       List<byte[]> initializationData, boolean adaptive, int maxWidth, int maxHeight,
@@ -269,64 +269,64 @@ public final class MediaFormat implements Parcelable {
     this.encoderPadding = encoderPadding;
   }
 
-  public MediaFormat copyWithMaxInputSize(int maxInputSize) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+  public MediaFormat_vadio copyWithMaxInputSize(int maxInputSize) {
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, maxWidth, maxHeight, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
-  public MediaFormat copyWithMaxVideoDimensions(int maxWidth, int maxHeight) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+  public MediaFormat_vadio copyWithMaxVideoDimensions(int maxWidth, int maxHeight) {
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, maxWidth, maxHeight, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
-  public MediaFormat copyWithSubsampleOffsetUs(long subsampleOffsetUs) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+  public MediaFormat_vadio copyWithSubsampleOffsetUs(long subsampleOffsetUs) {
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, maxWidth, maxHeight, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
-  public MediaFormat copyWithDurationUs(long durationUs) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+  public MediaFormat_vadio copyWithDurationUs(long durationUs) {
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, maxWidth, maxHeight, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
-  public MediaFormat copyWithLanguage(String language) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+  public MediaFormat_vadio copyWithLanguage(String language) {
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, maxWidth, maxHeight, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
-  public MediaFormat copyWithFixedTrackInfo(String trackId, int bitrate, int width, int height,
+  public MediaFormat_vadio copyWithFixedTrackInfo(String trackId, int bitrate, int width, int height,
       String language) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, NO_VALUE, NO_VALUE, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
-  public MediaFormat copyAsAdaptive(String trackId) {
-    return new MediaFormat(trackId, mimeType, NO_VALUE, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
+  public MediaFormat_vadio copyAsAdaptive(String trackId) {
+    return new MediaFormat_vadio(trackId, mimeType, NO_VALUE, NO_VALUE, durationUs, NO_VALUE, NO_VALUE,
         NO_VALUE, NO_VALUE, NO_VALUE, NO_VALUE, null, OFFSET_SAMPLE_RELATIVE, null, true, maxWidth,
         maxHeight, NO_VALUE, NO_VALUE, NO_VALUE);
   }
 
-  public MediaFormat copyWithGaplessInfo(int encoderDelay, int encoderPadding) {
-    return new MediaFormat(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
+  public MediaFormat_vadio copyWithGaplessInfo(int encoderDelay, int encoderPadding) {
+    return new MediaFormat_vadio(trackId, mimeType, bitrate, maxInputSize, durationUs, width, height,
         rotationDegrees, pixelWidthHeightRatio, channelCount, sampleRate, language,
         subsampleOffsetUs, initializationData, adaptive, maxWidth, maxHeight, pcmEncoding,
         encoderDelay, encoderPadding);
   }
 
   /**
-   * @return A {@link MediaFormat} representation of this format.
+   * @return A {@link MediaFormat_vadio} representation of this format.
    */
   @SuppressLint("InlinedApi")
   @TargetApi(16)
@@ -370,7 +370,7 @@ public final class MediaFormat implements Parcelable {
 
   @Override
   public String toString() {
-    return "MediaFormat(" + trackId + ", " + mimeType + ", " + bitrate + ", " + maxInputSize
+    return "MediaFormat_vadio(" + trackId + ", " + mimeType + ", " + bitrate + ", " + maxInputSize
         + ", " + width + ", " + height + ", " + rotationDegrees + ", " + pixelWidthHeightRatio
         + ", " + channelCount + ", " + sampleRate + ", " + language + ", " + durationUs + ", "
         + adaptive + ", " + maxWidth + ", " + maxHeight + ", " + pcmEncoding + ", " + encoderDelay
@@ -416,7 +416,7 @@ public final class MediaFormat implements Parcelable {
     if (obj == null || getClass() != obj.getClass()) {
       return false;
     }
-    MediaFormat other = (MediaFormat) obj;
+    MediaFormat_vadio other = (MediaFormat_vadio) obj;
     if (adaptive != other.adaptive || bitrate != other.bitrate || maxInputSize != other.maxInputSize
         || durationUs != other.durationUs || width != other.width || height != other.height
         || rotationDegrees != other.rotationDegrees
@@ -485,16 +485,16 @@ public final class MediaFormat implements Parcelable {
     dest.writeInt(encoderPadding);
   }
 
-  public static final Creator<MediaFormat> CREATOR = new Creator<MediaFormat>() {
+  public static final Creator<MediaFormat_vadio> CREATOR = new Creator<MediaFormat_vadio>() {
 
     @Override
-    public MediaFormat createFromParcel(Parcel in) {
-      return new MediaFormat(in);
+    public MediaFormat_vadio createFromParcel(Parcel in) {
+      return new MediaFormat_vadio(in);
     }
 
     @Override
-    public MediaFormat[] newArray(int size) {
-      return new MediaFormat[size];
+    public MediaFormat_vadio[] newArray(int size) {
+      return new MediaFormat_vadio[size];
     }
 
   };

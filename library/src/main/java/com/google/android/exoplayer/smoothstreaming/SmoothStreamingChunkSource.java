@@ -17,7 +17,7 @@ package com.google.android.exoplayer.smoothstreaming;
 
 import com.google.android.exoplayer.BehindLiveWindowException;
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.chunk.Chunk;
 import com.google.android.exoplayer.chunk.ChunkExtractorWrapper;
 import com.google.android.exoplayer.chunk.ChunkOperationHolder;
@@ -78,7 +78,7 @@ public class SmoothStreamingChunkSource implements ChunkSource,
 
   // Mappings from manifest track key.
   private final SparseArray<ChunkExtractorWrapper> extractorWrappers;
-  private final SparseArray<MediaFormat> mediaFormats;
+  private final SparseArray<MediaFormat_vadio> mediaFormats;
 
   private boolean prepareCalled;
   private SmoothStreamingManifest currentManifest;
@@ -184,7 +184,7 @@ public class SmoothStreamingChunkSource implements ChunkSource,
   }
 
   @Override
-  public final MediaFormat getFormat(int track) {
+  public final MediaFormat_vadio getFormat(int track) {
     return tracks.get(track).trackFormat;
   }
 
@@ -354,7 +354,7 @@ public class SmoothStreamingChunkSource implements ChunkSource,
       // Do nothing.
       return;
     }
-    MediaFormat maxHeightMediaFormat = null;
+    MediaFormat_vadio maxHeightMediaFormat = null;
     StreamElement streamElement = manifest.streamElements[element];
     int maxWidth = -1;
     int maxHeight = -1;
@@ -362,7 +362,7 @@ public class SmoothStreamingChunkSource implements ChunkSource,
     for (int i = 0; i < formats.length; i++) {
       int manifestTrackIndex = trackIndices[i];
       formats[i] = streamElement.tracks[manifestTrackIndex].format;
-      MediaFormat mediaFormat = initManifestTrack(manifest, element, manifestTrackIndex);
+      MediaFormat_vadio mediaFormat = initManifestTrack(manifest, element, manifestTrackIndex);
       if (maxHeightMediaFormat == null || mediaFormat.height > maxHeight) {
         maxHeightMediaFormat = mediaFormat;
       }
@@ -370,23 +370,23 @@ public class SmoothStreamingChunkSource implements ChunkSource,
       maxHeight = Math.max(maxHeight, mediaFormat.height);
     }
     Arrays.sort(formats, new DecreasingBandwidthComparator());
-    MediaFormat adaptiveMediaFormat = maxHeightMediaFormat.copyAsAdaptive(null);
+    MediaFormat_vadio adaptiveMediaFormat = maxHeightMediaFormat.copyAsAdaptive(null);
     tracks.add(new ExposedTrack(adaptiveMediaFormat, element, formats, maxWidth, maxHeight));
   }
 
   @Override
   public void fixedTrack(SmoothStreamingManifest manifest, int element, int trackIndex) {
-    MediaFormat mediaFormat = initManifestTrack(manifest, element, trackIndex);
+    MediaFormat_vadio mediaFormat = initManifestTrack(manifest, element, trackIndex);
     Format format = manifest.streamElements[element].tracks[trackIndex].format;
     tracks.add(new ExposedTrack(mediaFormat, element, format));
   }
 
   // Private methods.
 
-  private MediaFormat initManifestTrack(SmoothStreamingManifest manifest, int elementIndex,
+  private MediaFormat_vadio initManifestTrack(SmoothStreamingManifest manifest, int elementIndex,
       int trackIndex) {
     int manifestTrackKey = getManifestTrackKey(elementIndex, trackIndex);
-    MediaFormat mediaFormat = mediaFormats.get(manifestTrackKey);
+    MediaFormat_vadio mediaFormat = mediaFormats.get(manifestTrackKey);
     if (mediaFormat != null) {
       // Already initialized.
       return mediaFormat;
@@ -400,8 +400,8 @@ public class SmoothStreamingChunkSource implements ChunkSource,
     int mp4TrackType;
     switch (element.type) {
       case StreamElement.TYPE_VIDEO:
-        mediaFormat = MediaFormat.createVideoFormat(format.id, format.mimeType, format.bitrate,
-            MediaFormat.NO_VALUE, durationUs, format.width, format.height, Arrays.asList(csdArray));
+        mediaFormat = MediaFormat_vadio.createVideoFormat(format.id, format.mimeType, format.bitrate,
+            MediaFormat_vadio.NO_VALUE, durationUs, format.width, format.height, Arrays.asList(csdArray));
         mp4TrackType = Track.TYPE_vide;
         break;
       case StreamElement.TYPE_AUDIO:
@@ -412,13 +412,13 @@ public class SmoothStreamingChunkSource implements ChunkSource,
           csd = Collections.singletonList(CodecSpecificDataUtil.buildAacAudioSpecificConfig(
               format.audioSamplingRate, format.audioChannels));
         }
-        mediaFormat = MediaFormat.createAudioFormat(format.id, format.mimeType, format.bitrate,
-            MediaFormat.NO_VALUE, durationUs, format.audioChannels, format.audioSamplingRate, csd,
+        mediaFormat = MediaFormat_vadio.createAudioFormat(format.id, format.mimeType, format.bitrate,
+            MediaFormat_vadio.NO_VALUE, durationUs, format.audioChannels, format.audioSamplingRate, csd,
             format.language);
         mp4TrackType = Track.TYPE_soun;
         break;
       case StreamElement.TYPE_TEXT:
-        mediaFormat = MediaFormat.createTextFormat(format.id, format.mimeType, format.bitrate,
+        mediaFormat = MediaFormat_vadio.createTextFormat(format.id, format.mimeType, format.bitrate,
             durationUs, format.language);
         mp4TrackType = Track.TYPE_text;
         break;
@@ -477,7 +477,7 @@ public class SmoothStreamingChunkSource implements ChunkSource,
   private static MediaChunk newMediaChunk(Format formatInfo, Uri uri, String cacheKey,
       ChunkExtractorWrapper extractorWrapper, DrmInitData drmInitData, DataSource dataSource,
       int chunkIndex, long chunkStartTimeUs, long chunkEndTimeUs, int trigger,
-      MediaFormat mediaFormat, int adaptiveMaxWidth, int adaptiveMaxHeight) {
+      MediaFormat_vadio mediaFormat, int adaptiveMaxWidth, int adaptiveMaxHeight) {
     long offset = 0;
     DataSpec dataSpec = new DataSpec(uri, offset, -1, cacheKey);
     // In SmoothStreaming each chunk contains sample timestamps relative to the start of the chunk.
@@ -518,7 +518,7 @@ public class SmoothStreamingChunkSource implements ChunkSource,
 
   private static final class ExposedTrack {
 
-    public final MediaFormat trackFormat;
+    public final MediaFormat_vadio trackFormat;
 
     private final int elementIndex;
 
@@ -530,16 +530,16 @@ public class SmoothStreamingChunkSource implements ChunkSource,
     private final int adaptiveMaxWidth;
     private final int adaptiveMaxHeight;
 
-    public ExposedTrack(MediaFormat trackFormat, int elementIndex, Format fixedFormat) {
+    public ExposedTrack(MediaFormat_vadio trackFormat, int elementIndex, Format fixedFormat) {
       this.trackFormat = trackFormat;
       this.elementIndex = elementIndex;
       this.fixedFormat = fixedFormat;
       this.adaptiveFormats = null;
-      this.adaptiveMaxWidth = MediaFormat.NO_VALUE;
-      this.adaptiveMaxHeight = MediaFormat.NO_VALUE;
+      this.adaptiveMaxWidth = MediaFormat_vadio.NO_VALUE;
+      this.adaptiveMaxHeight = MediaFormat_vadio.NO_VALUE;
     }
 
-    public ExposedTrack(MediaFormat trackFormat, int elementIndex, Format[] adaptiveFormats,
+    public ExposedTrack(MediaFormat_vadio trackFormat, int elementIndex, Format[] adaptiveFormats,
         int adaptiveMaxWidth, int adaptiveMaxHeight) {
       this.trackFormat = trackFormat;
       this.elementIndex = elementIndex;

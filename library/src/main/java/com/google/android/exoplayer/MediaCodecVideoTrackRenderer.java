@@ -87,7 +87,7 @@ public class MediaCodecVideoTrackRenderer extends MediaCodecTrackRenderer {
 
   }
 
-  // TODO: Use MediaFormat constants if these get exposed through the API. See
+  // TODO: Use MediaFormat_vadio constants if these get exposed through the API. See
   // [Internal: b/14127601].
   private static final String KEY_CROP_LEFT = "crop-left";
   private static final String KEY_CROP_RIGHT = "crop-right";
@@ -217,7 +217,7 @@ public class MediaCodecVideoTrackRenderer extends MediaCodecTrackRenderer {
   }
 
   @Override
-  protected boolean handlesTrack(MediaCodecSelector mediaCodecSelector, MediaFormat mediaFormat)
+  protected boolean handlesTrack(MediaCodecSelector mediaCodecSelector, MediaFormat_vadio mediaFormat)
       throws DecoderQueryException {
     String mimeType = mediaFormat.mimeType;
     return MimeTypes.isVideo(mimeType) && (MimeTypes.VIDEO_UNKNOWN.equals(mimeType)
@@ -331,9 +331,9 @@ public class MediaCodecVideoTrackRenderer extends MediaCodecTrackRenderer {
   @Override
   protected void onInputFormatChanged(MediaFormatHolder holder) throws ExoPlaybackException {
     super.onInputFormatChanged(holder);
-    pendingPixelWidthHeightRatio = holder.format.pixelWidthHeightRatio == MediaFormat.NO_VALUE ? 1
+    pendingPixelWidthHeightRatio = holder.format.pixelWidthHeightRatio == MediaFormat_vadio.NO_VALUE ? 1
         : holder.format.pixelWidthHeightRatio;
-    pendingRotationDegrees = holder.format.rotationDegrees == MediaFormat.NO_VALUE ? 0
+    pendingRotationDegrees = holder.format.rotationDegrees == MediaFormat_vadio.NO_VALUE ? 0
         : holder.format.rotationDegrees;
   }
 
@@ -376,7 +376,7 @@ public class MediaCodecVideoTrackRenderer extends MediaCodecTrackRenderer {
 
   @Override
   protected boolean canReconfigureCodec(MediaCodec codec, boolean codecIsAdaptive,
-      MediaFormat oldFormat, MediaFormat newFormat) {
+      MediaFormat_vadio oldFormat, MediaFormat_vadio newFormat) {
     return newFormat.mimeType.equals(oldFormat.mimeType)
         && (codecIsAdaptive
             || (oldFormat.width == newFormat.width && oldFormat.height == newFormat.height));

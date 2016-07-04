@@ -18,7 +18,7 @@ package com.google.android.exoplayer.extractor.webm;
 import static com.google.android.exoplayer.extractor.webm.StreamBuilder.TEST_ENCRYPTION_KEY_ID;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.drm.DrmInitData;
 import com.google.android.exoplayer.drm.DrmInitData.SchemeInitData;
@@ -713,7 +713,7 @@ public final class WebmExtractorTest extends InstrumentationTestCase {
   }
 
   private void assertVp9VideoFormat(int trackNumber, int timecodeScale) {
-    MediaFormat format = getTrackOutput(trackNumber).format;
+    MediaFormat_vadio format = getTrackOutput(trackNumber).format;
     assertEquals(Util.scaleLargeTimestamp(TEST_DURATION_TIMECODE, timecodeScale, 1000),
         format.durationUs);
     assertEquals(TEST_WIDTH, format.width);
@@ -722,7 +722,7 @@ public final class WebmExtractorTest extends InstrumentationTestCase {
   }
 
   private void assertH264VideoFormat(int trackNumber, int timecodeScale) {
-    MediaFormat format = getTrackOutput(trackNumber).format;
+    MediaFormat_vadio format = getTrackOutput(trackNumber).format;
     assertEquals(Util.scaleLargeTimestamp(TEST_DURATION_TIMECODE, timecodeScale, 1000),
         format.durationUs);
     assertEquals(TEST_WIDTH, format.width);
@@ -731,7 +731,7 @@ public final class WebmExtractorTest extends InstrumentationTestCase {
   }
 
   private void assertAudioFormat(int trackNumber, int timecodeScale, String expectedMimeType) {
-    MediaFormat format = getTrackOutput(trackNumber).format;
+    MediaFormat_vadio format = getTrackOutput(trackNumber).format;
     assertEquals(Util.scaleLargeTimestamp(TEST_DURATION_TIMECODE, timecodeScale, 1000),
         format.durationUs);
     assertEquals(TEST_CHANNEL_COUNT, format.channelCount);

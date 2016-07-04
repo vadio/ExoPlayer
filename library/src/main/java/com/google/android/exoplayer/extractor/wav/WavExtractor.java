@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.wav;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.extractor.Extractor;
 import com.google.android.exoplayer.extractor.ExtractorInput;
@@ -81,7 +81,7 @@ public final class WavExtractor implements Extractor, SeekMap {
       WavHeaderReader.skipToData(input, wavHeader);
 
       trackOutput.format(
-          MediaFormat.createAudioFormat(
+          MediaFormat_vadio.createAudioFormat(
               null,
               MimeTypes.AUDIO_RAW,
               wavHeader.getBitrate(),

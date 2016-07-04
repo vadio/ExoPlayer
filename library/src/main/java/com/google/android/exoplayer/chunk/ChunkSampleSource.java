@@ -17,7 +17,7 @@ package com.google.android.exoplayer.chunk;
 
 import com.google.android.exoplayer.C;
 import com.google.android.exoplayer.LoadControl;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleHolder;
 import com.google.android.exoplayer.SampleSource;
@@ -87,7 +87,7 @@ public class ChunkSampleSource implements SampleSource, SampleSourceReader, Load
   private long currentLoadableExceptionTimestamp;
   private long currentLoadStartTimeMs;
 
-  private MediaFormat downstreamMediaFormat;
+  private MediaFormat_vadio downstreamMediaFormat;
   private Format downstreamFormat;
 
   /**
@@ -174,7 +174,7 @@ public class ChunkSampleSource implements SampleSource, SampleSourceReader, Load
   }
 
   @Override
-  public MediaFormat getFormat(int track) {
+  public MediaFormat_vadio getFormat(int track) {
     Assertions.checkState(state == STATE_PREPARED || state == STATE_ENABLED);
     return chunkSource.getFormat(track);
   }
@@ -257,7 +257,7 @@ public class ChunkSampleSource implements SampleSource, SampleSourceReader, Load
     downstreamFormat = format;
 
     if (haveSamples || currentChunk.isMediaFormatFinal) {
-      MediaFormat mediaFormat = currentChunk.getMediaFormat();
+      MediaFormat_vadio mediaFormat = currentChunk.getMediaFormat();
       if (!mediaFormat.equals(downstreamMediaFormat)) {
         formatHolder.format = mediaFormat;
         formatHolder.drmInitData = currentChunk.getDrmInitData();

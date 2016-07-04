@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.ext.flac;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.Extractor;
 import com.google.android.exoplayer.extractor.ExtractorInput;
 import com.google.android.exoplayer.extractor.ExtractorOutput;
@@ -97,8 +97,8 @@ public final class FlacExtractor implements Extractor {
         }
       });
 
-      MediaFormat mediaFormat = MediaFormat.createAudioFormat(null, MimeTypes.AUDIO_RAW,
-              streamInfo.bitRate(), MediaFormat.NO_VALUE, streamInfo.durationUs(),
+      MediaFormat_vadio mediaFormat = MediaFormat_vadio.createAudioFormat(null, MimeTypes.AUDIO_RAW,
+              streamInfo.bitRate(), MediaFormat_vadio.NO_VALUE, streamInfo.durationUs(),
               streamInfo.channels, streamInfo.sampleRate, null, null, C.ENCODING_PCM_16BIT);
       trackOutput.format(mediaFormat);
 

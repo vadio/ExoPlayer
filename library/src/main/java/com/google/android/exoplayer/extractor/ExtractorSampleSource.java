@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.SampleHolder;
@@ -217,7 +217,7 @@ public final class ExtractorSampleSource implements SampleSource, SampleSourceRe
 
   private boolean prepared;
   private int enabledTrackCount;
-  private MediaFormat[] mediaFormats;
+  private MediaFormat_vadio[] mediaFormats;
   private long maxTrackDurationUs;
   private boolean[] pendingMediaFormat;
   private boolean[] pendingDiscontinuities;
@@ -360,10 +360,10 @@ public final class ExtractorSampleSource implements SampleSource, SampleSourceRe
       trackEnabledStates = new boolean[trackCount];
       pendingDiscontinuities = new boolean[trackCount];
       pendingMediaFormat = new boolean[trackCount];
-      mediaFormats = new MediaFormat[trackCount];
+      mediaFormats = new MediaFormat_vadio[trackCount];
       maxTrackDurationUs = C.UNKNOWN_TIME_US;
       for (int i = 0; i < trackCount; i++) {
-        MediaFormat format = sampleQueues.valueAt(i).getFormat();
+        MediaFormat_vadio format = sampleQueues.valueAt(i).getFormat();
         mediaFormats[i] = format;
         if (format.durationUs != C.UNKNOWN_TIME_US && format.durationUs > maxTrackDurationUs) {
           maxTrackDurationUs = format.durationUs;
@@ -382,7 +382,7 @@ public final class ExtractorSampleSource implements SampleSource, SampleSourceRe
   }
 
   @Override
-  public MediaFormat getFormat(int track) {
+  public MediaFormat_vadio getFormat(int track) {
     Assertions.checkState(prepared);
     return mediaFormats[track];
   }

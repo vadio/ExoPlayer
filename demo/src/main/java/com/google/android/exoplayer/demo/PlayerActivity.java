@@ -20,7 +20,7 @@ import com.google.android.exoplayer.ExoPlaybackException;
 import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.MediaCodecTrackRenderer.DecoderInitializationException;
 import com.google.android.exoplayer.MediaCodecUtil.DecoderQueryException;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.audio.AudioCapabilities;
 import com.google.android.exoplayer.audio.AudioCapabilitiesReceiver;
 import com.google.android.exoplayer.demo.player.DashRendererBuilder;
@@ -556,7 +556,7 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback, 
     menu.findItem(player.getSelectedTrack(trackType) + ID_OFFSET).setChecked(true);
   }
 
-  private static String buildTrackName(MediaFormat format) {
+  private static String buildTrackName(MediaFormat_vadio format) {
     if (format.adaptive) {
       return "auto";
     }
@@ -575,23 +575,23 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback, 
     return trackName.length() == 0 ? "unknown" : trackName;
   }
 
-  private static String buildResolutionString(MediaFormat format) {
-    return format.width == MediaFormat.NO_VALUE || format.height == MediaFormat.NO_VALUE
+  private static String buildResolutionString(MediaFormat_vadio format) {
+    return format.width == MediaFormat_vadio.NO_VALUE || format.height == MediaFormat_vadio.NO_VALUE
         ? "" : format.width + "x" + format.height;
   }
 
-  private static String buildAudioPropertyString(MediaFormat format) {
-    return format.channelCount == MediaFormat.NO_VALUE || format.sampleRate == MediaFormat.NO_VALUE
+  private static String buildAudioPropertyString(MediaFormat_vadio format) {
+    return format.channelCount == MediaFormat_vadio.NO_VALUE || format.sampleRate == MediaFormat_vadio.NO_VALUE
         ? "" : format.channelCount + "ch, " + format.sampleRate + "Hz";
   }
 
-  private static String buildLanguageString(MediaFormat format) {
+  private static String buildLanguageString(MediaFormat_vadio format) {
     return TextUtils.isEmpty(format.language) || "und".equals(format.language) ? ""
         : format.language;
   }
 
-  private static String buildBitrateString(MediaFormat format) {
-    return format.bitrate == MediaFormat.NO_VALUE ? ""
+  private static String buildBitrateString(MediaFormat_vadio format) {
+    return format.bitrate == MediaFormat_vadio.NO_VALUE ? ""
         : String.format(Locale.US, "%.2fMbit", format.bitrate / 1000000f);
   }
 
@@ -599,7 +599,7 @@ public class PlayerActivity extends Activity implements SurfaceHolder.Callback, 
     return first.length() == 0 ? second : (second.length() == 0 ? first : first + ", " + second);
   }
 
-  private static String buildTrackIdString(MediaFormat format) {
+  private static String buildTrackIdString(MediaFormat_vadio format) {
     return format.trackId == null ? "" : " (" + format.trackId + ")";
   }
 

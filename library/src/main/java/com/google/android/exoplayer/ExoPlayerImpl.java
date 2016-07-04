@@ -34,7 +34,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
   private final Handler eventHandler;
   private final ExoPlayerImplInternal internalPlayer;
   private final CopyOnWriteArraySet<Listener> listeners;
-  private final MediaFormat[][] trackFormats;
+  private final MediaFormat_vadio[][] trackFormats;
   private final int[] selectedTrackIndices;
 
   private boolean playWhenReady;
@@ -58,7 +58,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
     this.playWhenReady = false;
     this.playbackState = STATE_IDLE;
     this.listeners = new CopyOnWriteArraySet<>();
-    this.trackFormats = new MediaFormat[rendererCount][];
+    this.trackFormats = new MediaFormat_vadio[rendererCount][];
     this.selectedTrackIndices = new int[rendererCount];
     eventHandler = new Handler() {
       @Override
@@ -102,7 +102,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
   }
 
   @Override
-  public MediaFormat getTrackFormat(int rendererIndex, int trackIndex) {
+  public MediaFormat_vadio getTrackFormat(int rendererIndex, int trackIndex) {
     return trackFormats[rendererIndex][trackIndex];
   }
 

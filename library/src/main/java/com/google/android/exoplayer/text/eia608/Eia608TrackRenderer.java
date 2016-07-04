@@ -17,7 +17,7 @@ package com.google.android.exoplayer.text.eia608;
 
 import com.google.android.exoplayer.C;
 import com.google.android.exoplayer.ExoPlaybackException;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleHolder;
 import com.google.android.exoplayer.SampleSource;
@@ -90,7 +90,7 @@ public final class Eia608TrackRenderer extends SampleSourceTrackRenderer impleme
   }
 
   @Override
-  protected boolean handlesTrack(MediaFormat mediaFormat) {
+  protected boolean handlesTrack(MediaFormat_vadio mediaFormat) {
     return eia608Parser.canParse(mediaFormat.mimeType);
   }
 

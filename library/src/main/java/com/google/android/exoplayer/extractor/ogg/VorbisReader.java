@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ogg;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.extractor.Extractor;
 import com.google.android.exoplayer.extractor.ExtractorInput;
@@ -93,7 +93,7 @@ import java.util.ArrayList;
 
       duration = inputLength == C.LENGTH_UNBOUNDED ? C.UNKNOWN_TIME_US
           : totalSamples * C.MICROS_PER_SECOND / vorbisSetup.idHeader.sampleRate;
-      trackOutput.format(MediaFormat.createAudioFormat(null, MimeTypes.AUDIO_VORBIS,
+      trackOutput.format(MediaFormat_vadio.createAudioFormat(null, MimeTypes.AUDIO_VORBIS,
           this.vorbisSetup.idHeader.bitrateNominal, OggParser.OGG_MAX_SEGMENT_SIZE * 255, duration,
           this.vorbisSetup.idHeader.channels, (int) this.vorbisSetup.idHeader.sampleRate,
           codecInitialisationData, null));

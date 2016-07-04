@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.flv;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.CodecSpecificDataUtil;
 import com.google.android.exoplayer.util.MimeTypes;
@@ -86,8 +86,8 @@ import java.util.Collections;
       data.readBytes(audioSpecifiConfig, 0, audioSpecifiConfig.length);
       Pair<Integer, Integer> audioParams = CodecSpecificDataUtil.parseAacAudioSpecificConfig(
           audioSpecifiConfig);
-      MediaFormat mediaFormat = MediaFormat.createAudioFormat(null, MimeTypes.AUDIO_AAC,
-          MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, getDurationUs(), audioParams.second,
+      MediaFormat_vadio mediaFormat = MediaFormat_vadio.createAudioFormat(null, MimeTypes.AUDIO_AAC,
+          MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, getDurationUs(), audioParams.second,
           audioParams.first, Collections.singletonList(audioSpecifiConfig), null);
       output.format(mediaFormat);
       hasOutputFormat = true;

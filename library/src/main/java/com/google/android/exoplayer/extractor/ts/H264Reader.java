@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ts;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.MimeTypes;
 import com.google.android.exoplayer.util.NalUnitUtil;
@@ -171,9 +171,9 @@ import java.util.List;
           initializationData.add(Arrays.copyOf(pps.nalData, pps.nalLength));
           NalUnitUtil.SpsData spsData = NalUnitUtil.parseSpsNalUnit(unescape(sps));
           NalUnitUtil.PpsData ppsData = NalUnitUtil.parsePpsNalUnit(unescape(pps));
-          output.format(MediaFormat.createVideoFormat(null, MimeTypes.VIDEO_H264,
-              MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, spsData.width,
-              spsData.height, initializationData, MediaFormat.NO_VALUE,
+          output.format(MediaFormat_vadio.createVideoFormat(null, MimeTypes.VIDEO_H264,
+              MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, spsData.width,
+              spsData.height, initializationData, MediaFormat_vadio.NO_VALUE,
               spsData.pixelWidthAspectRatio));
           hasOutputFormat = true;
           sampleReader.putSps(spsData);

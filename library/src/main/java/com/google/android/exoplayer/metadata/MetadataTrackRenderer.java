@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.metadata;
 
 import com.google.android.exoplayer.ExoPlaybackException;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleHolder;
 import com.google.android.exoplayer.SampleSource;
@@ -88,7 +88,7 @@ public final class MetadataTrackRenderer<T> extends SampleSourceTrackRenderer im
   }
 
   @Override
-  protected boolean handlesTrack(MediaFormat mediaFormat) {
+  protected boolean handlesTrack(MediaFormat_vadio mediaFormat) {
     return metadataParser.canParse(mediaFormat.mimeType);
   }
 

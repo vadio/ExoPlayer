@@ -111,7 +111,7 @@ public interface SampleSource {
      * @param track The track index.
      * @return The format of the specified track.
      */
-    public MediaFormat getFormat(int track);
+    public MediaFormat_vadio getFormat(int track);
 
     /**
      * Enable the specified track. This allows the track's format and samples to be read from

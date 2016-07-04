@@ -69,7 +69,7 @@ import java.util.concurrent.atomic.AtomicInteger;
   private final StandaloneMediaClock standaloneMediaClock;
   private final AtomicInteger pendingSeekCount;
   private final List<TrackRenderer> enabledRenderers;
-  private final MediaFormat[][] trackFormats;
+  private final MediaFormat_vadio[][] trackFormats;
   private final int[] selectedTrackIndices;
   private final long minBufferUs;
   private final long minRebufferUs;
@@ -105,7 +105,7 @@ import java.util.concurrent.atomic.AtomicInteger;
     standaloneMediaClock = new StandaloneMediaClock();
     pendingSeekCount = new AtomicInteger();
     enabledRenderers = new ArrayList<>(selectedTrackIndices.length);
-    trackFormats = new MediaFormat[selectedTrackIndices.length][];
+    trackFormats = new MediaFormat_vadio[selectedTrackIndices.length][];
     // Note: The documentation for Process.THREAD_PRIORITY_AUDIO that states "Applications can
     // not normally change to this priority" is incorrect.
     internalPlaybackThread = new PriorityHandlerThread("ExoPlayerImplInternal:Handler",
@@ -290,7 +290,7 @@ import java.util.concurrent.atomic.AtomicInteger;
     for (int rendererIndex = 0; rendererIndex < renderers.length; rendererIndex++) {
       TrackRenderer renderer = renderers[rendererIndex];
       int rendererTrackCount = renderer.getTrackCount();
-      MediaFormat[] rendererTrackFormats = new MediaFormat[rendererTrackCount];
+      MediaFormat_vadio[] rendererTrackFormats = new MediaFormat_vadio[rendererTrackCount];
       for (int trackIndex = 0; trackIndex < rendererTrackCount; trackIndex++) {
         rendererTrackFormats[trackIndex] = renderer.getFormat(trackIndex);
       }

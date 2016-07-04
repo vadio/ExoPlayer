@@ -20,7 +20,7 @@ import com.google.android.exoplayer.CodecCounters;
 import com.google.android.exoplayer.ExoPlaybackException;
 import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.MediaClock;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleSource;
 import com.google.android.exoplayer.SampleSourceTrackRenderer;
@@ -83,7 +83,7 @@ public final class LibflacAudioTrackRenderer extends SampleSourceTrackRenderer
   private final EventListener eventListener;
   private final MediaFormatHolder formatHolder;
 
-  private MediaFormat format;
+  private MediaFormat_vadio format;
   private FlacDecoder decoder;
   private InputBuffer inputBuffer;
   private FlacOutputBuffer outputBuffer;
@@ -133,7 +133,7 @@ public final class LibflacAudioTrackRenderer extends SampleSourceTrackRenderer
   }
 
   @Override
-  protected boolean handlesTrack(MediaFormat mediaFormat) {
+  protected boolean handlesTrack(MediaFormat_vadio mediaFormat) {
     return MimeTypes.AUDIO_FLAC.equalsIgnoreCase(mediaFormat.mimeType);
   }
 

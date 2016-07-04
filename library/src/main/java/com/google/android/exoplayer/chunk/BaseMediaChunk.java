@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.chunk;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.drm.DrmInitData;
 import com.google.android.exoplayer.extractor.DefaultTrackOutput;
 import com.google.android.exoplayer.upstream.DataSource;
@@ -78,14 +78,14 @@ public abstract class BaseMediaChunk extends MediaChunk {
   }
 
   /**
-   * Gets the {@link MediaFormat} corresponding to the chunk.
+   * Gets the {@link MediaFormat_vadio} corresponding to the chunk.
    * <p>
    * See {@link #isMediaFormatFinal} for information about when this method is guaranteed to return
    * correct data.
    *
-   * @return The {@link MediaFormat} corresponding to this chunk.
+   * @return The {@link MediaFormat_vadio} corresponding to this chunk.
    */
-  public abstract MediaFormat getMediaFormat();
+  public abstract MediaFormat_vadio getMediaFormat();
 
   /**
    * Gets the {@link DrmInitData} corresponding to the chunk.

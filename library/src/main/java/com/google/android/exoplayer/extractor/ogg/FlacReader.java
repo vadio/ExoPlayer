@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ogg;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.Extractor;
 import com.google.android.exoplayer.extractor.ExtractorInput;
 import com.google.android.exoplayer.extractor.PositionHolder;
@@ -68,8 +68,8 @@ import java.util.List;
       metadata[4] = (byte) 0x80; // Set the last metadata block flag, ignore the other blocks
       List<byte[]> initializationData = Collections.singletonList(metadata);
 
-      MediaFormat mediaFormat = MediaFormat.createAudioFormat(null, MimeTypes.AUDIO_FLAC,
-          streamInfo.bitRate(), MediaFormat.NO_VALUE, streamInfo.durationUs(),
+      MediaFormat_vadio mediaFormat = MediaFormat_vadio.createAudioFormat(null, MimeTypes.AUDIO_FLAC,
+          streamInfo.bitRate(), MediaFormat_vadio.NO_VALUE, streamInfo.durationUs(),
           streamInfo.channels, streamInfo.sampleRate, initializationData, null);
       trackOutput.format(mediaFormat);
 

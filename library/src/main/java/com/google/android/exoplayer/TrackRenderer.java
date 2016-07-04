@@ -143,7 +143,7 @@ public abstract class TrackRenderer implements ExoPlayerComponent {
    * @param track The track index.
    * @return The format of the specified track.
    */
-  protected abstract MediaFormat getFormat(int track);
+  protected abstract MediaFormat_vadio getFormat(int track);
 
   /**
    * Enable the renderer for a specified track.

@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.text;
 
 import com.google.android.exoplayer.ExoPlaybackException;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleHolder;
 import com.google.android.exoplayer.SampleSource;
@@ -173,7 +173,7 @@ public final class TextTrackRenderer extends SampleSourceTrackRenderer implement
   }
 
   @Override
-  protected boolean handlesTrack(MediaFormat mediaFormat) {
+  protected boolean handlesTrack(MediaFormat_vadio mediaFormat) {
     return getParserIndex(mediaFormat) != -1;
   }
 
@@ -316,7 +316,7 @@ public final class TextTrackRenderer extends SampleSourceTrackRenderer implement
     textRenderer.onCues(cues);
   }
 
-  private int getParserIndex(MediaFormat mediaFormat) {
+  private int getParserIndex(MediaFormat_vadio mediaFormat) {
     for (int i = 0; i < subtitleParsers.length; i++) {
       if (subtitleParsers[i].canParse(mediaFormat.mimeType)) {
         return i;

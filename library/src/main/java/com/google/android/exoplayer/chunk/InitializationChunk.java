@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.chunk;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.chunk.ChunkExtractorWrapper.SingleTrackOutput;
 import com.google.android.exoplayer.drm.DrmInitData;
 import com.google.android.exoplayer.extractor.DefaultExtractorInput;
@@ -39,7 +39,7 @@ public final class InitializationChunk extends Chunk implements SingleTrackOutpu
   // Initialization results. Set by the loader thread and read by any thread that knows loading
   // has completed. These variables do not need to be volatile, since a memory barrier must occur
   // for the reading thread to know that loading has completed.
-  private MediaFormat mediaFormat;
+  private MediaFormat_vadio mediaFormat;
   private DrmInitData drmInitData;
   private SeekMap seekMap;
 
@@ -73,7 +73,7 @@ public final class InitializationChunk extends Chunk implements SingleTrackOutpu
   }
 
   /**
-   * True if a {@link MediaFormat} was parsed from the chunk. False otherwise.
+   * True if a {@link MediaFormat_vadio} was parsed from the chunk. False otherwise.
    * <p>
    * Should be called after loading has completed.
    */
@@ -82,11 +82,11 @@ public final class InitializationChunk extends Chunk implements SingleTrackOutpu
   }
 
   /**
-   * Returns a {@link MediaFormat} parsed from the chunk, or null.
+   * Returns a {@link MediaFormat_vadio} parsed from the chunk, or null.
    * <p>
    * Should be called after loading has completed.
    */
-  public MediaFormat getFormat() {
+  public MediaFormat_vadio getFormat() {
     return mediaFormat;
   }
 
@@ -139,7 +139,7 @@ public final class InitializationChunk extends Chunk implements SingleTrackOutpu
   }
 
   @Override
-  public void format(MediaFormat mediaFormat) {
+  public void format(MediaFormat_vadio mediaFormat) {
     this.mediaFormat = mediaFormat;
   }
 

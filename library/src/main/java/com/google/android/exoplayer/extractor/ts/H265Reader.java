@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ts;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.MimeTypes;
 import com.google.android.exoplayer.util.NalUnitUtil;
@@ -203,7 +203,7 @@ import java.util.Collections;
     }
   }
 
-  private static MediaFormat parseMediaFormat(NalUnitTargetBuffer vps, NalUnitTargetBuffer sps,
+  private static MediaFormat_vadio parseMediaFormat(NalUnitTargetBuffer vps, NalUnitTargetBuffer sps,
       NalUnitTargetBuffer pps) {
     // Build codec-specific data.
     byte[] csd = new byte[vps.nalLength + sps.nalLength + pps.nalLength];
@@ -309,9 +309,9 @@ import java.util.Collections;
       }
     }
 
-    return MediaFormat.createVideoFormat(null, MimeTypes.VIDEO_H265, MediaFormat.NO_VALUE,
-        MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, picWidthInLumaSamples, picHeightInLumaSamples,
-        Collections.singletonList(csd), MediaFormat.NO_VALUE, pixelWidthHeightRatio);
+    return MediaFormat_vadio.createVideoFormat(null, MimeTypes.VIDEO_H265, MediaFormat_vadio.NO_VALUE,
+        MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, picWidthInLumaSamples, picHeightInLumaSamples,
+        Collections.singletonList(csd), MediaFormat_vadio.NO_VALUE, pixelWidthHeightRatio);
   }
 
   /**

@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.hls;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.SampleHolder;
 import com.google.android.exoplayer.chunk.Format;
 import com.google.android.exoplayer.drm.DrmInitData;
@@ -48,7 +48,7 @@ public final class HlsExtractorWrapper implements ExtractorOutput {
   private final int adaptiveMaxWidth;
   private final int adaptiveMaxHeight;
 
-  private MediaFormat[] sampleQueueFormats;
+  private MediaFormat_vadio[] sampleQueueFormats;
   private Allocator allocator;
 
   private volatile boolean tracksBuilt;
@@ -92,11 +92,11 @@ public final class HlsExtractorWrapper implements ExtractorOutput {
         }
       }
       prepared = true;
-      sampleQueueFormats = new MediaFormat[sampleQueues.size()];
+      sampleQueueFormats = new MediaFormat_vadio[sampleQueues.size()];
       for (int i = 0; i < sampleQueueFormats.length; i++) {
-        MediaFormat format = sampleQueues.valueAt(i).getFormat();
-        if (MimeTypes.isVideo(format.mimeType) && (adaptiveMaxWidth != MediaFormat.NO_VALUE
-            || adaptiveMaxHeight != MediaFormat.NO_VALUE)) {
+        MediaFormat_vadio format = sampleQueues.valueAt(i).getFormat();
+        if (MimeTypes.isVideo(format.mimeType) && (adaptiveMaxWidth != MediaFormat_vadio.NO_VALUE
+            || adaptiveMaxHeight != MediaFormat_vadio.NO_VALUE)) {
           format = format.copyWithMaxVideoDimensions(adaptiveMaxWidth, adaptiveMaxHeight);
         }
         sampleQueueFormats[i] = format;
@@ -175,14 +175,14 @@ public final class HlsExtractorWrapper implements ExtractorOutput {
   }
 
   /**
-   * Gets the {@link MediaFormat} of the specified track.
+   * Gets the {@link MediaFormat_vadio} of the specified track.
    * <p>
    * This method must only be called after the extractor has been prepared.
    *
    * @param track The track index.
    * @return The corresponding format.
    */
-  public MediaFormat getMediaFormat(int track) {
+  public MediaFormat_vadio getMediaFormat(int track) {
     Assertions.checkState(isPrepared());
     return sampleQueueFormats[track];
   }

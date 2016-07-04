@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.extractor;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.util.ParsableByteArray;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 public class DummyTrackOutput implements TrackOutput {
   @Override
-  public void format(MediaFormat format) {
+  public void format(MediaFormat_vadio format) {
     // Do nothing.
   }
 

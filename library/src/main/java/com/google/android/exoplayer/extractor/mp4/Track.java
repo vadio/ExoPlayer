@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.mp4;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.util.Util;
 
 /**
@@ -59,7 +59,7 @@ public final class Track {
   /**
    * The media format.
    */
-  public final MediaFormat mediaFormat;
+  public final MediaFormat_vadio mediaFormat;
 
   /**
    * Track encryption boxes for the different track sample descriptions. Entries may be null.
@@ -83,7 +83,7 @@ public final class Track {
   public final int nalUnitLengthFieldLength;
 
   public Track(int id, int type, long timescale, long movieTimescale, long durationUs,
-      MediaFormat mediaFormat, TrackEncryptionBox[] sampleDescriptionEncryptionBoxes,
+      MediaFormat_vadio mediaFormat, TrackEncryptionBox[] sampleDescriptionEncryptionBoxes,
       int nalUnitLengthFieldLength, long[] editListDurations, long[] editListMediaTimes) {
     this.id = id;
     this.type = type;

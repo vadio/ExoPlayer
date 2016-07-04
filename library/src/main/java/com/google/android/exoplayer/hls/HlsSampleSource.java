@@ -17,7 +17,7 @@ package com.google.android.exoplayer.hls;
 
 import com.google.android.exoplayer.C;
 import com.google.android.exoplayer.LoadControl;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleHolder;
 import com.google.android.exoplayer.SampleSource;
@@ -82,10 +82,10 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
 
   // Tracks are complicated in HLS. See documentation of buildTracks for details.
   // Indexed by track (as exposed by this source).
-  private MediaFormat[] trackFormats;
+  private MediaFormat_vadio[] trackFormats;
   private boolean[] trackEnabledStates;
   private boolean[] pendingDiscontinuities;
-  private MediaFormat[] downstreamMediaFormats;
+  private MediaFormat_vadio[] downstreamMediaFormats;
   // Maps track index (as exposed by this source) to the corresponding chunk source track index for
   // primary tracks, or to -1 otherwise.
   private int[] chunkSourceTrackIndices;
@@ -189,7 +189,7 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
   }
 
   @Override
-  public MediaFormat getFormat(int track) {
+  public MediaFormat_vadio getFormat(int track) {
     Assertions.checkState(prepared);
     return trackFormats[track];
   }
@@ -328,7 +328,7 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
       }
     }
 
-    MediaFormat mediaFormat = extractor.getMediaFormat(extractorTrack);
+    MediaFormat_vadio mediaFormat = extractor.getMediaFormat(extractorTrack);
     if (mediaFormat != null) {
       if (!mediaFormat.equals(downstreamMediaFormats[track])) {
         formatHolder.format = mediaFormat;
@@ -536,10 +536,10 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
     }
 
     // Instantiate the necessary internal data-structures.
-    trackFormats = new MediaFormat[trackCount];
+    trackFormats = new MediaFormat_vadio[trackCount];
     trackEnabledStates = new boolean[trackCount];
     pendingDiscontinuities = new boolean[trackCount];
-    downstreamMediaFormats = new MediaFormat[trackCount];
+    downstreamMediaFormats = new MediaFormat_vadio[trackCount];
     chunkSourceTrackIndices = new int[trackCount];
     extractorTrackIndices = new int[trackCount];
     extractorTrackEnabledStates = new boolean[extractorTrackCount];
@@ -548,7 +548,7 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
     long durationUs = chunkSource.getDurationUs();
     int trackIndex = 0;
     for (int i = 0; i < extractorTrackCount; i++) {
-      MediaFormat format = extractor.getMediaFormat(i).copyWithDurationUs(durationUs);
+      MediaFormat_vadio format = extractor.getMediaFormat(i).copyWithDurationUs(durationUs);
       String language = null;
       if (MimeTypes.isAudio(format.mimeType)) {
         language = chunkSource.getMuxedAudioLanguage();
@@ -587,18 +587,18 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
   }
 
   /**
-   * Copies a provided {@link MediaFormat}, incorporating information from the {@link Format} of
+   * Copies a provided {@link MediaFormat_vadio}, incorporating information from the {@link Format} of
    * a fixed (i.e. non-adaptive) track, as well as a language.
    *
-   * @param format The {@link MediaFormat} to copy.
+   * @param format The {@link MediaFormat_vadio} to copy.
    * @param fixedTrackFormat The {@link Format} to incorporate into the copy.
    * @param language The language to incorporate into the copy.
-   * @return The copied {@link MediaFormat}.
+   * @return The copied {@link MediaFormat_vadio}.
    */
-  private static MediaFormat copyWithFixedTrackInfo(MediaFormat format, Format fixedTrackFormat,
+  private static MediaFormat_vadio copyWithFixedTrackInfo(MediaFormat_vadio format, Format fixedTrackFormat,
       String language) {
-    int width = fixedTrackFormat.width == -1 ? MediaFormat.NO_VALUE : fixedTrackFormat.width;
-    int height = fixedTrackFormat.height == -1 ? MediaFormat.NO_VALUE : fixedTrackFormat.height;
+    int width = fixedTrackFormat.width == -1 ? MediaFormat_vadio.NO_VALUE : fixedTrackFormat.width;
+    int height = fixedTrackFormat.height == -1 ? MediaFormat_vadio.NO_VALUE : fixedTrackFormat.height;
     return format.copyWithFixedTrackInfo(fixedTrackFormat.id, fixedTrackFormat.bitrate, width,
         height, language);
   }

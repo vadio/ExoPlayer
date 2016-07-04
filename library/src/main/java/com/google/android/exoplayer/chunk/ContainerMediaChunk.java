@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.chunk;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.chunk.ChunkExtractorWrapper.SingleTrackOutput;
 import com.google.android.exoplayer.drm.DrmInitData;
 import com.google.android.exoplayer.extractor.DefaultExtractorInput;
@@ -39,7 +39,7 @@ public class ContainerMediaChunk extends BaseMediaChunk implements SingleTrackOu
   private final int adaptiveMaxWidth;
   private final int adaptiveMaxHeight;
 
-  private MediaFormat mediaFormat;
+  private MediaFormat_vadio mediaFormat;
   private DrmInitData drmInitData;
 
   private volatile int bytesLoaded;
@@ -55,14 +55,14 @@ public class ContainerMediaChunk extends BaseMediaChunk implements SingleTrackOu
    * @param chunkIndex The index of the chunk.
    * @param sampleOffsetUs An offset to add to the sample timestamps parsed by the extractor.
    * @param extractorWrapper A wrapped extractor to use for parsing the data.
-   * @param mediaFormat The {@link MediaFormat} of the chunk, if known. May be null if the data is
+   * @param mediaFormat The {@link MediaFormat_vadio} of the chunk, if known. May be null if the data is
    *     known to define its own format.
    * @param adaptiveMaxWidth If this chunk contains video and is part of an adaptive playback, this
    *     is the maximum width of the video in pixels that will be encountered during the playback.
-   *     {@link MediaFormat#NO_VALUE} otherwise.
+   *     {@link MediaFormat_vadio#NO_VALUE} otherwise.
    * @param adaptiveMaxHeight If this chunk contains video and is part of an adaptive playback, this
    *     is the maximum height of the video in pixels that will be encountered during the playback.
-   *     {@link MediaFormat#NO_VALUE} otherwise.
+   *     {@link MediaFormat_vadio#NO_VALUE} otherwise.
    * @param drmInitData The {@link DrmInitData} for the chunk. Null if the media is not drm
    *     protected. May also be null if the data is known to define its own initialization data.
    * @param isMediaFormatFinal True if {@code mediaFormat} and {@code drmInitData} are known to be
@@ -71,7 +71,7 @@ public class ContainerMediaChunk extends BaseMediaChunk implements SingleTrackOu
    */
   public ContainerMediaChunk(DataSource dataSource, DataSpec dataSpec, int trigger, Format format,
       long startTimeUs, long endTimeUs, int chunkIndex, long sampleOffsetUs,
-      ChunkExtractorWrapper extractorWrapper, MediaFormat mediaFormat, int adaptiveMaxWidth,
+      ChunkExtractorWrapper extractorWrapper, MediaFormat_vadio mediaFormat, int adaptiveMaxWidth,
       int adaptiveMaxHeight, DrmInitData drmInitData, boolean isMediaFormatFinal, int parentId) {
     super(dataSource, dataSpec, trigger, format, startTimeUs, endTimeUs, chunkIndex,
         isMediaFormatFinal, parentId);
@@ -90,7 +90,7 @@ public class ContainerMediaChunk extends BaseMediaChunk implements SingleTrackOu
   }
 
   @Override
-  public final MediaFormat getMediaFormat() {
+  public final MediaFormat_vadio getMediaFormat() {
     return mediaFormat;
   }
 
@@ -112,7 +112,7 @@ public class ContainerMediaChunk extends BaseMediaChunk implements SingleTrackOu
   }
 
   @Override
-  public final void format(MediaFormat mediaFormat) {
+  public final void format(MediaFormat_vadio mediaFormat) {
     this.mediaFormat = getAdjustedMediaFormat(mediaFormat, sampleOffsetUs, adaptiveMaxWidth,
         adaptiveMaxHeight);
   }
@@ -174,15 +174,15 @@ public class ContainerMediaChunk extends BaseMediaChunk implements SingleTrackOu
 
   // Private methods.
 
-  private static MediaFormat getAdjustedMediaFormat(MediaFormat format, long sampleOffsetUs,
+  private static MediaFormat_vadio getAdjustedMediaFormat(MediaFormat_vadio format, long sampleOffsetUs,
       int adaptiveMaxWidth, int adaptiveMaxHeight) {
     if (format == null) {
       return null;
     }
-    if (sampleOffsetUs != 0 && format.subsampleOffsetUs != MediaFormat.OFFSET_SAMPLE_RELATIVE) {
+    if (sampleOffsetUs != 0 && format.subsampleOffsetUs != MediaFormat_vadio.OFFSET_SAMPLE_RELATIVE) {
       format = format.copyWithSubsampleOffsetUs(format.subsampleOffsetUs + sampleOffsetUs);
     }
-    if (adaptiveMaxWidth != MediaFormat.NO_VALUE || adaptiveMaxHeight != MediaFormat.NO_VALUE) {
+    if (adaptiveMaxWidth != MediaFormat_vadio.NO_VALUE || adaptiveMaxHeight != MediaFormat_vadio.NO_VALUE) {
       format = format.copyWithMaxVideoDimensions(adaptiveMaxWidth, adaptiveMaxHeight);
     }
     return format;

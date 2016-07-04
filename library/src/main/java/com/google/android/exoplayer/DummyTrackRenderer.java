@@ -35,7 +35,7 @@ public final class DummyTrackRenderer extends TrackRenderer {
   }
 
   @Override
-  protected MediaFormat getFormat(int track) {
+  protected MediaFormat_vadio getFormat(int track) {
     throw new IllegalStateException();
   }
 

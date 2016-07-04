@@ -18,7 +18,7 @@ package com.google.android.exoplayer.ext.vp9;
 import com.google.android.exoplayer.CodecCounters;
 import com.google.android.exoplayer.ExoPlaybackException;
 import com.google.android.exoplayer.ExoPlayer;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.MediaFormatHolder;
 import com.google.android.exoplayer.SampleSource;
 import com.google.android.exoplayer.SampleSourceTrackRenderer;
@@ -121,7 +121,7 @@ public final class LibvpxVideoTrackRenderer extends SampleSourceTrackRenderer {
   private final int maxDroppedFrameCountToNotify;
   private final MediaFormatHolder formatHolder;
 
-  private MediaFormat format;
+  private MediaFormat_vadio format;
   private VpxDecoder decoder;
   private VpxInputBuffer inputBuffer;
   private VpxOutputBuffer outputBuffer;
@@ -190,7 +190,7 @@ public final class LibvpxVideoTrackRenderer extends SampleSourceTrackRenderer {
   }
 
   @Override
-  protected boolean handlesTrack(MediaFormat mediaFormat) {
+  protected boolean handlesTrack(MediaFormat_vadio mediaFormat) {
     return MimeTypes.VIDEO_VP9.equalsIgnoreCase(mediaFormat.mimeType);
   }
 

@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Unit test for {@link MediaFormat}.
+ * Unit test for {@link MediaFormat_vadio}.
  */
 public final class MediaFormatTest extends TestCase {
 
@@ -46,15 +46,15 @@ public final class MediaFormatTest extends TestCase {
   }
 
   public void testParcelable() {
-    MediaFormat formatToParcel = new MediaFormat("id", MimeTypes.VIDEO_H264, 1024, 2048,
-        C.UNKNOWN_TIME_US, 1920, 1080, 90, 2, 6, 44100, "und", MediaFormat.OFFSET_SAMPLE_RELATIVE,
+    MediaFormat_vadio formatToParcel = new MediaFormat_vadio("id", MimeTypes.VIDEO_H264, 1024, 2048,
+        C.UNKNOWN_TIME_US, 1920, 1080, 90, 2, 6, 44100, "und", MediaFormat_vadio.OFFSET_SAMPLE_RELATIVE,
         INIT_DATA, false, 5000, 5001, 5002, 5003, 5004);
 
     Parcel parcel = Parcel.obtain();
     formatToParcel.writeToParcel(parcel, 0);
     parcel.setDataPosition(0);
 
-    MediaFormat formatFromParcel = MediaFormat.CREATOR.createFromParcel(parcel);
+    MediaFormat_vadio formatFromParcel = MediaFormat_vadio.CREATOR.createFromParcel(parcel);
     assertEquals(formatToParcel, formatFromParcel);
 
     parcel.recycle();
@@ -66,23 +66,23 @@ public final class MediaFormatTest extends TestCase {
       return;
     }
 
-    testConversionToFrameworkFormatV16(MediaFormat.createVideoFormat(null, "video/xyz", 5000,
+    testConversionToFrameworkFormatV16(MediaFormat_vadio.createVideoFormat(null, "video/xyz", 5000,
         102400, 1000L, 1280, 720, INIT_DATA));
-    testConversionToFrameworkFormatV16(MediaFormat.createVideoFormat(null, "video/xyz", 5000,
-        MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, 1280, 720, null));
-    testConversionToFrameworkFormatV16(MediaFormat.createAudioFormat(null, "audio/xyz", 500, 128,
+    testConversionToFrameworkFormatV16(MediaFormat_vadio.createVideoFormat(null, "video/xyz", 5000,
+        MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, 1280, 720, null));
+    testConversionToFrameworkFormatV16(MediaFormat_vadio.createAudioFormat(null, "audio/xyz", 500, 128,
         1000L, 5, 44100, INIT_DATA, null));
-    testConversionToFrameworkFormatV16(MediaFormat.createAudioFormat(null, "audio/xyz", 500,
-        MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, 5, 44100, null, null));
-    testConversionToFrameworkFormatV16(MediaFormat.createTextFormat(null, "text/xyz",
-        MediaFormat.NO_VALUE, 1000L, "eng"));
-    testConversionToFrameworkFormatV16(MediaFormat.createTextFormat(null, "text/xyz",
-        MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, null));
+    testConversionToFrameworkFormatV16(MediaFormat_vadio.createAudioFormat(null, "audio/xyz", 500,
+        MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, 5, 44100, null, null));
+    testConversionToFrameworkFormatV16(MediaFormat_vadio.createTextFormat(null, "text/xyz",
+        MediaFormat_vadio.NO_VALUE, 1000L, "eng"));
+    testConversionToFrameworkFormatV16(MediaFormat_vadio.createTextFormat(null, "text/xyz",
+        MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, null));
   }
 
   @SuppressLint("InlinedApi")
   @TargetApi(16)
-  private static void testConversionToFrameworkFormatV16(MediaFormat in) {
+  private static void testConversionToFrameworkFormatV16(MediaFormat_vadio in) {
     android.media.MediaFormat out = in.getFrameworkMediaFormatV16();
     assertEquals(in.mimeType, out.getString(android.media.MediaFormat.KEY_MIME));
     assertOptionalV16(out, android.media.MediaFormat.KEY_LANGUAGE, in.language);
@@ -119,7 +119,7 @@ public final class MediaFormatTest extends TestCase {
   @TargetApi(16)
   private static void assertOptionalV16(android.media.MediaFormat format, String key,
       int value) {
-    if (value == MediaFormat.NO_VALUE) {
+    if (value == MediaFormat_vadio.NO_VALUE) {
       assertFalse(format.containsKey(key));
     } else {
       assertEquals(value, format.getInteger(key));

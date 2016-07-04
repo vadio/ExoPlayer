@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.mp4;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.extractor.GaplessInfo;
 import com.google.android.exoplayer.util.Ac3Util;
@@ -567,17 +567,17 @@ import java.util.List;
         parseAudioSampleEntry(stsd, childAtomType, childStartPosition, childAtomSize, trackId,
             durationUs, language, isQuickTime, out, i);
       } else if (childAtomType == Atom.TYPE_TTML) {
-        out.mediaFormat = MediaFormat.createTextFormat(Integer.toString(trackId),
-            MimeTypes.APPLICATION_TTML, MediaFormat.NO_VALUE, durationUs, language);
+        out.mediaFormat = MediaFormat_vadio.createTextFormat(Integer.toString(trackId),
+            MimeTypes.APPLICATION_TTML, MediaFormat_vadio.NO_VALUE, durationUs, language);
       } else if (childAtomType == Atom.TYPE_tx3g) {
-        out.mediaFormat = MediaFormat.createTextFormat(Integer.toString(trackId),
-            MimeTypes.APPLICATION_TX3G, MediaFormat.NO_VALUE, durationUs, language);
+        out.mediaFormat = MediaFormat_vadio.createTextFormat(Integer.toString(trackId),
+            MimeTypes.APPLICATION_TX3G, MediaFormat_vadio.NO_VALUE, durationUs, language);
       } else if (childAtomType == Atom.TYPE_wvtt) {
-        out.mediaFormat = MediaFormat.createTextFormat(Integer.toString(trackId),
-            MimeTypes.APPLICATION_MP4VTT, MediaFormat.NO_VALUE, durationUs, language);
+        out.mediaFormat = MediaFormat_vadio.createTextFormat(Integer.toString(trackId),
+            MimeTypes.APPLICATION_MP4VTT, MediaFormat_vadio.NO_VALUE, durationUs, language);
       } else if (childAtomType == Atom.TYPE_stpp) {
-        out.mediaFormat = MediaFormat.createTextFormat(Integer.toString(trackId),
-            MimeTypes.APPLICATION_TTML, MediaFormat.NO_VALUE, durationUs, language,
+        out.mediaFormat = MediaFormat_vadio.createTextFormat(Integer.toString(trackId),
+            MimeTypes.APPLICATION_TTML, MediaFormat_vadio.NO_VALUE, durationUs, language,
             0 /* subsample timing is absolute */);
       }
       stsd.setPosition(childStartPosition + childAtomSize);
@@ -650,8 +650,8 @@ import java.util.List;
       return;
     }
 
-    out.mediaFormat = MediaFormat.createVideoFormat(Integer.toString(trackId), mimeType,
-        MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, durationUs, width, height, initializationData,
+    out.mediaFormat = MediaFormat_vadio.createVideoFormat(Integer.toString(trackId), mimeType,
+        MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, durationUs, width, height, initializationData,
         rotationDegrees, pixelWidthHeightRatio);
   }
 
@@ -863,8 +863,8 @@ import java.util.List;
         out.mediaFormat = Ac3Util.parseEAc3AnnexFFormat(parent, Integer.toString(trackId),
             durationUs, language);
       } else if (childAtomType == Atom.TYPE_ddts) {
-        out.mediaFormat = MediaFormat.createAudioFormat(Integer.toString(trackId), mimeType,
-            MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, durationUs, channelCount, sampleRate, null,
+        out.mediaFormat = MediaFormat_vadio.createAudioFormat(Integer.toString(trackId), mimeType,
+            MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, durationUs, channelCount, sampleRate, null,
             language);
       }
       childPosition += childAtomSize;
@@ -873,9 +873,9 @@ import java.util.List;
     if (out.mediaFormat == null && mimeType != null) {
       // TODO: Determine the correct PCM encoding.
       int pcmEncoding = MimeTypes.AUDIO_RAW.equals(mimeType) ? C.ENCODING_PCM_16BIT
-          : MediaFormat.NO_VALUE;
-      out.mediaFormat = MediaFormat.createAudioFormat(Integer.toString(trackId), mimeType,
-          MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, durationUs, channelCount, sampleRate,
+          : MediaFormat_vadio.NO_VALUE;
+      out.mediaFormat = MediaFormat_vadio.createAudioFormat(Integer.toString(trackId), mimeType,
+          MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, durationUs, channelCount, sampleRate,
           initializationData == null ? null : Collections.singletonList(initializationData),
           language, pcmEncoding);
     }
@@ -1126,7 +1126,7 @@ import java.util.List;
 
     public final TrackEncryptionBox[] trackEncryptionBoxes;
 
-    public MediaFormat mediaFormat;
+    public MediaFormat_vadio mediaFormat;
     public int nalUnitLengthFieldLength;
 
     public StsdData(int numberOfEntries) {

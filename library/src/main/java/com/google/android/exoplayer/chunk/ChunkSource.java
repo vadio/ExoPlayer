@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.chunk;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 
 import java.io.IOException;
 import java.util.List;
@@ -64,7 +64,7 @@ public interface ChunkSource {
    * @param track The track index.
    * @return The format of the track.
    */
-  MediaFormat getFormat(int track);
+  MediaFormat_vadio getFormat(int track);
 
   /**
    * Enable the source for the specified track.

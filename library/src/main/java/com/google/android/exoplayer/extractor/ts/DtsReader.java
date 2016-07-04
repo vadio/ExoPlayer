@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ts;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.DtsUtil;
 import com.google.android.exoplayer.util.ParsableByteArray;
@@ -44,7 +44,7 @@ import com.google.android.exoplayer.util.ParsableByteArray;
 
   // Used when parsing the header.
   private long sampleDurationUs;
-  private MediaFormat mediaFormat;
+  private MediaFormat_vadio mediaFormat;
   private int sampleSize;
 
   // Used when reading the samples.
@@ -159,7 +159,7 @@ import com.google.android.exoplayer.util.ParsableByteArray;
       output.format(mediaFormat);
     }
     sampleSize = DtsUtil.getDtsFrameSize(frameData);
-    // In this class a sample is an access unit (frame in DTS), but the MediaFormat sample rate
+    // In this class a sample is an access unit (frame in DTS), but the MediaFormat_vadio sample rate
     // specifies the number of PCM audio samples per second.
     sampleDurationUs = (int) (C.MICROS_PER_SECOND
         * DtsUtil.parseDtsAudioSampleCount(frameData) / mediaFormat.sampleRate);

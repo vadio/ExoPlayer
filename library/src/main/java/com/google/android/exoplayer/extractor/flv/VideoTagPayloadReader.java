@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.flv;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.Assertions;
@@ -94,9 +94,9 @@ import java.util.List;
       nalUnitLengthFieldLength = avcData.nalUnitLengthFieldLength;
 
       // Construct and output the format.
-      MediaFormat mediaFormat = MediaFormat.createVideoFormat(null, MimeTypes.VIDEO_H264,
-          MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, getDurationUs(), avcData.width,
-          avcData.height, avcData.initializationData, MediaFormat.NO_VALUE,
+      MediaFormat_vadio mediaFormat = MediaFormat_vadio.createVideoFormat(null, MimeTypes.VIDEO_H264,
+          MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, getDurationUs(), avcData.width,
+          avcData.height, avcData.initializationData, MediaFormat_vadio.NO_VALUE,
           avcData.pixelWidthAspectRatio);
       output.format(mediaFormat);
       hasOutputFormat = true;
@@ -135,7 +135,7 @@ import java.util.List;
   }
 
   /**
-   * Builds initialization data for a {@link MediaFormat} from H.264 (AVC) codec private data.
+   * Builds initialization data for a {@link MediaFormat_vadio} from H.264 (AVC) codec private data.
    *
    * @return The AvcSequenceHeader data needed to initialize the video codec.
    * @throws ParserException If the initialization data could not be built.
@@ -157,8 +157,8 @@ import java.util.List;
     }
 
     float pixelWidthAspectRatio = 1;
-    int width = MediaFormat.NO_VALUE;
-    int height = MediaFormat.NO_VALUE;
+    int width = MediaFormat_vadio.NO_VALUE;
+    int height = MediaFormat_vadio.NO_VALUE;
     if (numSequenceParameterSets > 0) {
       // Parse the first sequence parameter set to obtain pixelWidthAspectRatio.
       ParsableBitArray spsDataBitArray = new ParsableBitArray(initializationData.get(0));

@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ts;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.CodecSpecificDataUtil;
 import com.google.android.exoplayer.util.MimeTypes;
@@ -84,7 +84,7 @@ import java.util.Collections;
   public AdtsReader(TrackOutput output, TrackOutput id3Output) {
     super(output);
     this.id3Output = id3Output;
-    id3Output.format(MediaFormat.createId3Format());
+    id3Output.format(MediaFormat_vadio.createId3Format());
     adtsScratch = new ParsableBitArray(new byte[HEADER_SIZE + CRC_SIZE]);
     id3HeaderBuffer = new ParsableByteArray(Arrays.copyOf(ID3_IDENTIFIER, ID3_HEADER_SIZE));
     setFindingSampleState();
@@ -277,10 +277,10 @@ import java.util.Collections;
       Pair<Integer, Integer> audioParams = CodecSpecificDataUtil.parseAacAudioSpecificConfig(
           audioSpecificConfig);
 
-      MediaFormat mediaFormat = MediaFormat.createAudioFormat(null, MimeTypes.AUDIO_AAC,
-          MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, audioParams.second,
+      MediaFormat_vadio mediaFormat = MediaFormat_vadio.createAudioFormat(null, MimeTypes.AUDIO_AAC,
+          MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, audioParams.second,
           audioParams.first, Collections.singletonList(audioSpecificConfig), null);
-      // In this class a sample is an access unit, but the MediaFormat sample rate specifies the
+      // In this class a sample is an access unit, but the MediaFormat_vadio sample rate specifies the
       // number of PCM audio samples per second.
       sampleDurationUs = (C.MICROS_PER_SECOND * 1024) / mediaFormat.sampleRate;
       output.format(mediaFormat);

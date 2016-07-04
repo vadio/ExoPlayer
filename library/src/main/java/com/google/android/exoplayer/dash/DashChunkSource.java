@@ -17,7 +17,7 @@ package com.google.android.exoplayer.dash;
 
 import com.google.android.exoplayer.BehindLiveWindowException;
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.TimeRange;
 import com.google.android.exoplayer.TimeRange.DynamicTimeRange;
 import com.google.android.exoplayer.TimeRange.StaticTimeRange;
@@ -306,7 +306,7 @@ public class DashChunkSource implements ChunkSource, Output {
   }
 
   @Override
-  public final MediaFormat getFormat(int track) {
+  public final MediaFormat_vadio getFormat(int track) {
     return tracks.get(track).trackFormat;
   }
 
@@ -472,7 +472,7 @@ public class DashChunkSource implements ChunkSource, Output {
     RangedUri pendingInitializationUri = null;
     RangedUri pendingIndexUri = null;
 
-    MediaFormat mediaFormat = representationHolder.mediaFormat;
+    MediaFormat_vadio mediaFormat = representationHolder.mediaFormat;
     if (mediaFormat == null) {
       pendingInitializationUri = selectedRepresentation.getInitializationUri();
     }
@@ -581,7 +581,7 @@ public class DashChunkSource implements ChunkSource, Output {
       Log.w(TAG, "Skipped adaptive track (unknown media mime type)");
       return;
     }
-    MediaFormat trackFormat = getTrackFormat(adaptationSet.type, maxHeightRepresentationFormat,
+    MediaFormat_vadio trackFormat = getTrackFormat(adaptationSet.type, maxHeightRepresentationFormat,
         mediaMimeType, trackDurationUs);
     if (trackFormat == null) {
       Log.w(TAG, "Skipped adaptive track (unknown media format)");
@@ -602,7 +602,7 @@ public class DashChunkSource implements ChunkSource, Output {
       Log.w(TAG, "Skipped track " + representationFormat.id + " (unknown media mime type)");
       return;
     }
-    MediaFormat trackFormat = getTrackFormat(adaptationSet.type, representationFormat,
+    MediaFormat_vadio trackFormat = getTrackFormat(adaptationSet.type, representationFormat,
         mediaMimeType, manifest.dynamic ? C.UNKNOWN_TIME_US : manifest.duration * 1000);
     if (trackFormat == null) {
       Log.w(TAG, "Skipped track " + representationFormat.id + " (unknown media format)");
@@ -626,18 +626,18 @@ public class DashChunkSource implements ChunkSource, Output {
         Collections.singletonList(period));
   }
 
-  private static MediaFormat getTrackFormat(int adaptationSetType, Format format,
+  private static MediaFormat_vadio getTrackFormat(int adaptationSetType, Format format,
       String mediaMimeType, long durationUs) {
     switch (adaptationSetType) {
       case AdaptationSet.TYPE_VIDEO:
-        return MediaFormat.createVideoFormat(format.id, mediaMimeType, format.bitrate,
-            MediaFormat.NO_VALUE, durationUs, format.width, format.height, null);
+        return MediaFormat_vadio.createVideoFormat(format.id, mediaMimeType, format.bitrate,
+            MediaFormat_vadio.NO_VALUE, durationUs, format.width, format.height, null);
       case AdaptationSet.TYPE_AUDIO:
-        return MediaFormat.createAudioFormat(format.id, mediaMimeType, format.bitrate,
-            MediaFormat.NO_VALUE, durationUs, format.audioChannels, format.audioSamplingRate, null,
+        return MediaFormat_vadio.createAudioFormat(format.id, mediaMimeType, format.bitrate,
+            MediaFormat_vadio.NO_VALUE, durationUs, format.audioChannels, format.audioSamplingRate, null,
             format.language);
       case AdaptationSet.TYPE_TEXT:
-        return MediaFormat.createTextFormat(format.id, mediaMimeType, format.bitrate,
+        return MediaFormat_vadio.createTextFormat(format.id, mediaMimeType, format.bitrate,
             durationUs, format.language);
       default:
         return null;
@@ -694,7 +694,7 @@ public class DashChunkSource implements ChunkSource, Output {
 
   protected Chunk newMediaChunk(
       PeriodHolder periodHolder, RepresentationHolder representationHolder, DataSource dataSource,
-      MediaFormat mediaFormat, ExposedTrack enabledTrack, int segmentNum, int trigger) {
+      MediaFormat_vadio mediaFormat, ExposedTrack enabledTrack, int segmentNum, int trigger) {
     Representation representation = representationHolder.representation;
     Format format = representation.format;
     long startTimeUs = representationHolder.getSegmentStartTimeUs(segmentNum);
@@ -827,7 +827,7 @@ public class DashChunkSource implements ChunkSource, Output {
 
   protected static final class ExposedTrack {
 
-    public final MediaFormat trackFormat;
+    public final MediaFormat_vadio trackFormat;
     public final int adaptiveMaxWidth;
     public final int adaptiveMaxHeight;
 
@@ -839,7 +839,7 @@ public class DashChunkSource implements ChunkSource, Output {
     // Adaptive track variables.
     private final Format[] adaptiveFormats;
 
-    public ExposedTrack(MediaFormat trackFormat, int adaptationSetIndex, Format fixedFormat) {
+    public ExposedTrack(MediaFormat_vadio trackFormat, int adaptationSetIndex, Format fixedFormat) {
       this.trackFormat = trackFormat;
       this.adaptationSetIndex = adaptationSetIndex;
       this.fixedFormat = fixedFormat;
@@ -848,7 +848,7 @@ public class DashChunkSource implements ChunkSource, Output {
       this.adaptiveMaxHeight = -1;
     }
 
-    public ExposedTrack(MediaFormat trackFormat, int adaptationSetIndex, Format[] adaptiveFormats,
+    public ExposedTrack(MediaFormat_vadio trackFormat, int adaptationSetIndex, Format[] adaptiveFormats,
         int maxWidth, int maxHeight) {
       this.trackFormat = trackFormat;
       this.adaptationSetIndex = adaptationSetIndex;
@@ -871,7 +871,7 @@ public class DashChunkSource implements ChunkSource, Output {
 
     public Representation representation;
     public DashSegmentIndex segmentIndex;
-    public MediaFormat mediaFormat;
+    public MediaFormat_vadio mediaFormat;
 
     private final long periodStartTimeUs;
 

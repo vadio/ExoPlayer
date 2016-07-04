@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.ts;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.extractor.TrackOutput;
 import com.google.android.exoplayer.util.MimeTypes;
 import com.google.android.exoplayer.util.NalUnitUtil;
@@ -121,7 +121,7 @@ import java.util.Collections;
           int bytesAlreadyPassed = lengthToStartCode < 0 ? -lengthToStartCode : 0;
           if (csdBuffer.onStartCode(startCodeValue, bytesAlreadyPassed)) {
             // The csd data is complete, so we can parse and output the media format.
-            Pair<MediaFormat, Long> result = parseCsdBuffer(csdBuffer);
+            Pair<MediaFormat_vadio, Long> result = parseCsdBuffer(csdBuffer);
             output.format(result.first);
             frameDurationUs = result.second;
             hasOutputFormat = true;
@@ -159,13 +159,13 @@ import java.util.Collections;
   }
 
   /**
-   * Parses the {@link MediaFormat} and frame duration from a csd buffer.
+   * Parses the {@link MediaFormat_vadio} and frame duration from a csd buffer.
    *
    * @param csdBuffer The csd buffer.
-   * @return A pair consisting of the {@link MediaFormat} and the frame duration in microseconds, or
+   * @return A pair consisting of the {@link MediaFormat_vadio} and the frame duration in microseconds, or
    *     0 if the duration could not be determined.
    */
-  private static Pair<MediaFormat, Long> parseCsdBuffer(CsdBuffer csdBuffer) {
+  private static Pair<MediaFormat_vadio, Long> parseCsdBuffer(CsdBuffer csdBuffer) {
     byte[] csdData = Arrays.copyOf(csdBuffer.data, csdBuffer.length);
 
     int firstByte = csdData[4] & 0xFF;
@@ -191,9 +191,9 @@ import java.util.Collections;
         break;
     }
 
-    MediaFormat format = MediaFormat.createVideoFormat(null, MimeTypes.VIDEO_MPEG2,
-        MediaFormat.NO_VALUE, MediaFormat.NO_VALUE, C.UNKNOWN_TIME_US, width, height,
-        Collections.singletonList(csdData), MediaFormat.NO_VALUE, pixelWidthHeightRatio);
+    MediaFormat_vadio format = MediaFormat_vadio.createVideoFormat(null, MimeTypes.VIDEO_MPEG2,
+        MediaFormat_vadio.NO_VALUE, MediaFormat_vadio.NO_VALUE, C.UNKNOWN_TIME_US, width, height,
+        Collections.singletonList(csdData), MediaFormat_vadio.NO_VALUE, pixelWidthHeightRatio);
 
     long frameDurationUs = 0;
     int frameRateCodeMinusOne = (csdData[7] & 0x0F) - 1;

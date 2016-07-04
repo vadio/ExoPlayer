@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer.extractor.mp4;
 
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.extractor.Extractor;
 import com.google.android.exoplayer.extractor.ExtractorInput;
@@ -318,7 +318,7 @@ public final class Mp4Extractor implements Extractor, SeekMap {
       // Each sample has up to three bytes of overhead for the start code that replaces its length.
       // Allow ten source samples per output sample, like the platform extractor.
       int maxInputSize = trackSampleTable.maximumSize + 3 * 10;
-      MediaFormat mediaFormat = track.mediaFormat.copyWithMaxInputSize(maxInputSize);
+      MediaFormat_vadio mediaFormat = track.mediaFormat.copyWithMaxInputSize(maxInputSize);
       if (gaplessInfo != null) {
         mediaFormat =
             mediaFormat.copyWithGaplessInfo(gaplessInfo.encoderDelay, gaplessInfo.encoderPadding);

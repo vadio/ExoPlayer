@@ -288,7 +288,7 @@ public interface ExoPlayer {
    * @param trackIndex The index of the track.
    * @return The format of the track.
    */
-  public MediaFormat getTrackFormat(int rendererIndex, int trackIndex);
+  public MediaFormat_vadio getTrackFormat(int rendererIndex, int trackIndex);
 
   /**
    * Selects a track for the specified renderer.

@@ -16,7 +16,7 @@
 package com.google.android.exoplayer.extractor.webm;
 
 import com.google.android.exoplayer.C;
-import com.google.android.exoplayer.MediaFormat;
+import com.google.android.exoplayer.MediaFormat_vadio;
 import com.google.android.exoplayer.ParserException;
 import com.google.android.exoplayer.drm.DrmInitData;
 import com.google.android.exoplayer.drm.DrmInitData.SchemeInitData;
@@ -1190,10 +1190,10 @@ public final class WebmExtractor implements Extractor {
     public byte[] codecPrivate;
 
     // Video elements.
-    public int width = MediaFormat.NO_VALUE;
-    public int height = MediaFormat.NO_VALUE;
-    public int displayWidth = MediaFormat.NO_VALUE;
-    public int displayHeight = MediaFormat.NO_VALUE;
+    public int width = MediaFormat_vadio.NO_VALUE;
+    public int height = MediaFormat_vadio.NO_VALUE;
+    public int displayWidth = MediaFormat_vadio.NO_VALUE;
+    public int displayHeight = MediaFormat_vadio.NO_VALUE;
     public int displayUnit = DISPLAY_UNIT_PIXELS;
 
     // Audio elements. Initially set to their default values.
@@ -1216,8 +1216,8 @@ public final class WebmExtractor implements Extractor {
     public void initializeOutput(ExtractorOutput output, int trackId, long durationUs)
         throws ParserException {
       String mimeType;
-      int maxInputSize = MediaFormat.NO_VALUE;
-      int pcmEncoding = MediaFormat.NO_VALUE;
+      int maxInputSize = MediaFormat_vadio.NO_VALUE;
+      int pcmEncoding = MediaFormat_vadio.NO_VALUE;
       List<byte[]> initializationData = null;
       switch (codecId) {
         case CODEC_ID_VP8:
@@ -1328,32 +1328,32 @@ public final class WebmExtractor implements Extractor {
           throw new ParserException("Unrecognized codec identifier.");
       }
 
-      MediaFormat format;
+      MediaFormat_vadio format;
       // TODO: Consider reading the name elements of the tracks and, if present, incorporating them
       // into the trackId passed when creating the formats.
       if (MimeTypes.isAudio(mimeType)) {
-        format = MediaFormat.createAudioFormat(Integer.toString(trackId), mimeType,
-            MediaFormat.NO_VALUE, maxInputSize, durationUs, channelCount, sampleRate,
+        format = MediaFormat_vadio.createAudioFormat(Integer.toString(trackId), mimeType,
+            MediaFormat_vadio.NO_VALUE, maxInputSize, durationUs, channelCount, sampleRate,
             initializationData, language, pcmEncoding);
       } else if (MimeTypes.isVideo(mimeType)) {
         if (displayUnit == Track.DISPLAY_UNIT_PIXELS) {
-          displayWidth = displayWidth == MediaFormat.NO_VALUE ? width : displayWidth;
-          displayHeight = displayHeight == MediaFormat.NO_VALUE ? height : displayHeight;
+          displayWidth = displayWidth == MediaFormat_vadio.NO_VALUE ? width : displayWidth;
+          displayHeight = displayHeight == MediaFormat_vadio.NO_VALUE ? height : displayHeight;
         }
-        float pixelWidthHeightRatio = MediaFormat.NO_VALUE;
-        if (displayWidth != MediaFormat.NO_VALUE && displayHeight != MediaFormat.NO_VALUE) {
+        float pixelWidthHeightRatio = MediaFormat_vadio.NO_VALUE;
+        if (displayWidth != MediaFormat_vadio.NO_VALUE && displayHeight != MediaFormat_vadio.NO_VALUE) {
           pixelWidthHeightRatio = ((float) (height * displayWidth)) / (width * displayHeight);
         }
-        format = MediaFormat.createVideoFormat(Integer.toString(trackId), mimeType,
-            MediaFormat.NO_VALUE, maxInputSize, durationUs, width, height, initializationData,
-            MediaFormat.NO_VALUE, pixelWidthHeightRatio);
+        format = MediaFormat_vadio.createVideoFormat(Integer.toString(trackId), mimeType,
+            MediaFormat_vadio.NO_VALUE, maxInputSize, durationUs, width, height, initializationData,
+            MediaFormat_vadio.NO_VALUE, pixelWidthHeightRatio);
       } else if (MimeTypes.APPLICATION_SUBRIP.equals(mimeType)) {
-        format = MediaFormat.createTextFormat(Integer.toString(trackId), mimeType,
-            MediaFormat.NO_VALUE, durationUs, language);
+        format = MediaFormat_vadio.createTextFormat(Integer.toString(trackId), mimeType,
+            MediaFormat_vadio.NO_VALUE, durationUs, language);
       } else if (MimeTypes.APPLICATION_VOBSUB.equals(mimeType)
           || MimeTypes.APPLICATION_PGS.equals(mimeType)) {
-        format = MediaFormat.createImageFormat(Integer.toString(trackId), mimeType,
-            MediaFormat.NO_VALUE, durationUs, initializationData, language);
+        format = MediaFormat_vadio.createImageFormat(Integer.toString(trackId), mimeType,
+            MediaFormat_vadio.NO_VALUE, durationUs, initializationData, language);
       } else {
         throw new ParserException("Unexpected MIME type.");
       }
@@ -1363,11 +1363,11 @@ public final class WebmExtractor implements Extractor {
     }
 
     /**
-     * Builds initialization data for a {@link MediaFormat} from FourCC codec private data.
+     * Builds initialization data for a {@link MediaFormat_vadio} from FourCC codec private data.
      * <p>
      * VC1 is the only supported compression type.
      *
-     * @return The initialization data for the {@link MediaFormat}.
+     * @return The initialization data for the {@link MediaFormat_vadio}.
      * @throws ParserException If the initialization data could not be built.
      */
     private static List<byte[]> parseFourCcVc1Private(ParsableByteArray buffer)
@@ -1399,9 +1399,9 @@ public final class WebmExtractor implements Extractor {
     }
 
     /**
-     * Builds initialization data for a {@link MediaFormat} from H.264 (AVC) codec private data.
+     * Builds initialization data for a {@link MediaFormat_vadio} from H.264 (AVC) codec private data.
      *
-     * @return The initialization data for the {@link MediaFormat}.
+     * @return The initialization data for the {@link MediaFormat_vadio}.
      * @throws ParserException If the initialization data could not be built.
      */
     private static Pair<List<byte[]>, Integer> parseAvcCodecPrivate(ParsableByteArray buffer)
@@ -1429,9 +1429,9 @@ public final class WebmExtractor implements Extractor {
     }
 
     /**
-     * Builds initialization data for a {@link MediaFormat} from H.265 (HEVC) codec private data.
+     * Builds initialization data for a {@link MediaFormat_vadio} from H.265 (HEVC) codec private data.
      *
-     * @return The initialization data for the {@link MediaFormat}.
+     * @return The initialization data for the {@link MediaFormat_vadio}.
      * @throws ParserException If the initialization data could not be built.
      */
     private static Pair<List<byte[]>, Integer> parseHevcCodecPrivate(ParsableByteArray parent)
@@ -1482,9 +1482,9 @@ public final class WebmExtractor implements Extractor {
     }
 
     /**
-     * Builds initialization data for a {@link MediaFormat} from Vorbis codec private data.
+     * Builds initialization data for a {@link MediaFormat_vadio} from Vorbis codec private data.
      *
-     * @return The initialization data for the {@link MediaFormat}.
+     * @return The initialization data for the {@link MediaFormat_vadio}.
      * @throws ParserException If the initialization data could not be built.
      */
     private static List<byte[]> parseVorbisCodecPrivate(byte[] codecPrivate)
